@@ -5,6 +5,7 @@ module.exports = {
         filename: "bundle.js"
     },
     module: {
+        noParse : /node_modules\/quill\/dist/,
         rules: [
             {
                 test : /\.svg$|\.png$|\.jpg$/,
@@ -19,7 +20,7 @@ module.exports = {
             }*/
             {
                 test : /\.css$/,
-                exclude: /node_modules/,
+                exclude: [/node_modules/, /stylesheets/],
                 use : ["style-loader", "css-loader"]},
             {
                test: /\.jsx?$/,

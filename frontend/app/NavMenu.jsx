@@ -4,7 +4,12 @@ export class NavMenu extends React.Component{
 
         constructor(props){
             super(props);
+            this.changeMenu = this.changeMenu.bind(this);
     }
+
+        changeMenu(item){
+            this.props.onViewChange(item);
+        }
         componentDidMount(){
             this.menuContainer.setAttribute("uk-navbar" , "");
             this.toggleIcon.setAttribute("uk-navbar-toggle-icon", '');
@@ -31,14 +36,14 @@ export class NavMenu extends React.Component{
                         <div className="uk-offcanvas-bar">
                             <div className='uk-width-1-2@s uk-width-2-5@m'>
                                 <ul className='uk-nav uk-nav-default'>
-                                    <li className='uk-active'>
+                                    <li className='uk-active uk-offcanvas-close' onClick={() => this.changeMenu('home')}>
                                         <a href="#">Active</a>
                                     </li>
-                                    <li>
-                                        <a href="#">Itme</a>
+                                    <li className="uk-offcanvas-close" onClick={() => this.changeMenu("table")}>
+                                        <a href="#">TableView</a>
                                     </li>
-                                    <li>
-                                        <a href="#">Itme</a>
+                                    <li className="uk-offcanvas-close">
+                                        <a href="#" onClick={() =>this.changeMenu("Editor")}>Editor</a>
                                     </li>
                                 </ul>
                             </div>

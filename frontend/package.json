@@ -25,10 +25,12 @@
     "babelify": "^7.3.0",
     "immutability-helper": "^2.1.1",
     "jquery": "^3.1.1",
+    "quill": "^1.2.0",
     "react": "^15.4.2",
     "react-dnd": "^2.1.4",
     "react-dnd-html5-backend": "^2.1.2",
     "react-dom": "^15.4.2",
+    "react-quill": "^0.4.1",
     "uikit": "^3.0.0-beta.6"
   },
   "main": "index.js",
