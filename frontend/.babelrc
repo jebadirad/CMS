@@ -1,0 +1,4 @@
+﻿{
+	"plugins": ["transform-react-jsx", "transform-react-jsx-self","transform-react-jsx-source"],
+  "presets": [ "react"]
+}
