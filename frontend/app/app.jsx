@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import $ from 'jquery';
+import {NavMenu} from './NavMenu.jsx'
+import {Container} from "./Container.jsx";
 require("style-loader!css-loader!..\\node_modules\\uikit\\dist\\css\\uikit.min.css");
+require("script-loader!..\\node_modules\\jquery\\dist\\jquery.js");
+require("script-loader!..\\node_modules\\uikit\\dist\\js\\uikit.js");
 export class AdminPanel extends React.Component{
 
         constructor(props){
@@ -13,18 +16,12 @@ export class AdminPanel extends React.Component{
         }
     
         render(){
-           
             return(
                 <div>
-                    <div>
-                        <ul className='uk-list uk-list-large'>
-                            <li>category1</li>
-                            <li>Category2</li>
-                        </ul>
-                    </div>
-                    <div>
+                    <NavMenu />
+                    <Container>
                         <p>this is the frame</p>
-                    </div>
+                    </Container>
                 </div>
             );
         }

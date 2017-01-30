@@ -1,39 +1,51 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import $ from 'jquery';
-require("style-loader!css-loader!..\\node_modules\\uikit\\dist\\css\\uikit.min.css");
 export class NavMenu extends React.Component{
 
         constructor(props){
             super(props);
     }
+        componentDidMount(){
+            this.menuContainer.setAttribute("uk-navbar" , "");
+            this.toggleIcon.setAttribute("uk-navbar-toggle-icon", '');
+            this.toggleMenu.setAttribute("uk-toggle", "target: #offNavMenu");
+            this.toggleLogo.setAttribute("uk-toggle", "target: #offNavMenu");
+            this.offCanvas.setAttribute("uk-offcanvas" , "");
+    }
 
     
-        componentDidMount(){
-        }
-    
         render(){
-           
             return(
                 <div>
-                    <div>
-                        <ul className='uk-list uk-list-large'>
-                            <li>category1</li>
-                            <li>Category2</li>
-                        </ul>
+                    <div className='uk-navbar-container' ref={(div) => {this.menuContainer = div;}}>
+                        <div className='uk-navbar-left'>
+                            <a onClick={this.preventNav} className='uk-navbar-toggle' href="#" ref={(div) => {this.toggleMenu = div;}}>
+                                <span ref={(div) => {this.toggleIcon = div;}}></span>
+                            </a>
+                            <a className="uk-navbar-item uk-logo uk-navbar-toggle" href="#" ref={(div) => {this.toggleLogo = div;}}>
+                                Logo
+                            </a>
+                        </div>
                     </div>
-                    <div>
-                        <p>this is the frame</p>
+                    <div id='offNavMenu' ref={(div) => {this.offCanvas = div;}}>
+                        <div className="uk-offcanvas-bar">
+                            <div className='uk-width-1-2@s uk-width-2-5@m'>
+                                <ul className='uk-nav uk-nav-default'>
+                                    <li className='uk-active'>
+                                        <a href="#">Active</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Itme</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Itme</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
             );
         }
 }
-
-
-
-
-ReactDOM.render(
-    <AdminPanel />,
-  document.getElementById('main')
-);

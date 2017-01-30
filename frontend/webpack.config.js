@@ -10,6 +10,13 @@ module.exports = {
                 test : /\.svg$|\.png$|\.jpg$/,
                 use:"file-loader"
             },
+            /*
+            consider putting this in later but only when we have more files.  dont want to include too many things.
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: "script-loader"
+            }*/
             {
                 test : /\.css$/,
                 exclude: /node_modules/,
