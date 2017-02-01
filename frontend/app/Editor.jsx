@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactQuill from 'react-quill';
+require("style-loader!css-loader!..\\stylesheets\\quill\\quill.core.css");
 require("style-loader!css-loader!..\\stylesheets\\quill\\quill.snow.css");
 export class Editor extends React.Component{
 
@@ -10,7 +11,7 @@ export class Editor extends React.Component{
                 value : ""
             }
             this.onTextChange = this.onTextChange.bind(this);
-            this.onSubmit = this.onSubmit.bind(this);
+            
 }
         onTextChange(text){
             this.setState({value : text});
@@ -26,11 +27,11 @@ export class Editor extends React.Component{
     
         render(){
             return(
-                <div className='uk-section-default'>
+                <div className='uk-section-default uk-box-shadow-xlarge'>
                     <ReactQuill value={this.state.value} 
                     theme="snow"
+                    styles={false}
                     onChange={this.onTextChange} />
-                    <button className="uk-button uk-button-default" onclick={this.onSubmit}>Submit</button>
                 </div>
 
 

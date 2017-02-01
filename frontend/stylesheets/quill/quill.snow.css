@@ -131,7 +131,7 @@
   cursor: text;
   font-family: Helvetica, 'Arial', sans-serif;
   font-size: 13px;
-  height: 100%;
+  height: 524px;
   line-height: 1.42;
   margin: 0px;
   overflow-x: hidden;
@@ -141,7 +141,7 @@
 }
 .ql-editor {
   box-sizing: border-box;
-  min-height: 100%;
+  min-height: 500px;
   outline: none;
   tab-size: 4;
   white-space: pre-wrap;
@@ -248,6 +248,7 @@
   display: block;
 }
 .ql-snow.ql-toolbar {
+  border-bottom: 1px solid #757575;
   box-sizing: border-box;
   padding: 8px;
   user-select: none;
