@@ -20,6 +20,8 @@ export class NavMenu extends React.Component{
 
     
         render(){
+            const active = "uk-active";
+            const canvasClose = "uk-offcanvas-close";
             return(
                 <div>
                     <div className='uk-navbar-container' ref={(div) => {this.menuContainer = div;}}>
@@ -36,14 +38,14 @@ export class NavMenu extends React.Component{
                         <div className="uk-offcanvas-bar">
                             <div className='uk-width-1-2@s uk-width-2-5@m'>
                                 <ul className='uk-nav uk-nav-default'>
-                                    <li className='uk-active uk-offcanvas-close' onClick={() => this.changeMenu('home')}>
-                                        <a href="#">Active</a>
+                                    <li className={this.props.active === "home"? active + " " + canvasClose : canvasClose } onClick={() => this.changeMenu('home')}>
+                                        <a href="#">Home</a>
                                     </li>
-                                    <li className="uk-offcanvas-close" onClick={() => this.changeMenu("table")}>
-                                        <a href="#">TableView</a>
+                                    <li className={this.props.active === 'table'? active + ' ' + canvasClose : canvasClose } onClick={() => this.changeMenu("webpages")}>
+                                        <a href="#">Web Pages</a>
                                     </li>
-                                    <li className="uk-offcanvas-close">
-                                        <a href="#" onClick={() =>this.changeMenu("Editor")}>Editor</a>
+                                    <li className={this.props.active === 'editor'? active + ' ' + canvasClose : canvasClose }  onClick={() =>this.changeMenu("editor")}>
+                                        <a href="#">Editor</a>
                                     </li>
                                 </ul>
                             </div>

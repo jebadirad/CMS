@@ -11,27 +11,42 @@ export class TableListing extends React.Component{
                         ["Table Data", "Table Data", "Table Data", "Table Data"],
                         ["Table Data", "Table Data", "Table Data", "Table Data"]
                     ]
-
             }
     }
         componentDidMount(){
+            //this.props.url for ajax.
             //fetch table headers based on something maybe we pass in a url or a type?
     }
 
     
         render(){
+            var closure = this;
             const header = this.state.headers.map(function(head){
                 return (<th>{head}</th>);
             });
             const tableData = this.state.data.map(function(row){
-                const data = row.map(function(dataCell){
-                    return(<td>{dataCell}</td>);
-                });
-                return (<tr>{data}</tr>);
-            })
+                var include = false;
+                if(closure.props.filter){
+                    for(var i = 0; i < row.length; i++){
+                        if(row[i].indexOf(closure.props.filter) > -1){
+                            include = true;
+                            break;
+                        }
+                    }
+                }else{
+                   include = true; 
+                }
+                if(include){
+                    const cells = row.map(function(dataCell, index){return(<td key={index}>{dataCell}</td>);});
+                    var data = (<tr>{cells}</tr>);
+                }else{
+                    const data = null;
+                }
+            return data;
+
+            });
 
             return(
-                <div className="uk-section">
                     <table className="uk-table uk-table-striped">
                         <thead>
                             <tr>
@@ -42,8 +57,6 @@ export class TableListing extends React.Component{
                              {tableData}
                         </tbody>
                     </table>
-                </div>
-
             );
         }
 }

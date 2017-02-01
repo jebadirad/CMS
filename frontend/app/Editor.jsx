@@ -10,9 +10,14 @@ export class Editor extends React.Component{
                 value : ""
             }
             this.onTextChange = this.onTextChange.bind(this);
+            this.onSubmit = this.onSubmit.bind(this);
 }
         onTextChange(text){
             this.setState({value : text});
+        }
+        onSubmit(e){
+            e.preventDefault();
+            //this.props.func(this.state.value);
         }
         componentDidMount(){
 
@@ -25,6 +30,7 @@ export class Editor extends React.Component{
                     <ReactQuill value={this.state.value} 
                     theme="snow"
                     onChange={this.onTextChange} />
+                    <button className="uk-button uk-button-default" onclick={this.onSubmit}>Submit</button>
                 </div>
 
 

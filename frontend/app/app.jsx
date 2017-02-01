@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {NavMenu} from './NavMenu.jsx'
 import {Container} from "./Container.jsx";
-import {TableListing} from "./TableListing.jsx";
+import {WebPageController} from "./controllers/WebPageController.jsx";
 import {Editor} from './Editor.jsx';
 
 import update from "immutability-helper";
@@ -32,11 +32,14 @@ export class AdminPanel extends React.Component{
                 case "home":
                 body =  <p>this is the frame</p>;
                 break;
-                case "table":
-                body = <TableListing />;
+                case "webpages":
+                body = <WebPageController />;
+                break;
+                case "editor":
+                body =<Editor />;
                 break;
                 default:
-                body =  <Editor />;
+                body =  <p>this is home</p>
                 break;
             }
 
@@ -45,7 +48,7 @@ export class AdminPanel extends React.Component{
 
             return(
                 <div>
-                    <NavMenu onViewChange={this.viewChange} />
+                    <NavMenu active={this.state.view} onViewChange={this.viewChange} />
                     <Container>
                         {body}
                     </Container>
