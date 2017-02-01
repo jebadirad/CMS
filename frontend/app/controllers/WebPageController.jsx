@@ -10,29 +10,28 @@ export class WebPageController extends React.Component{
                 view : "list",
             };
             //views : list edit 
-            this.newWebPage = this.newWebPage.bind(this);
+            this.changeView = this.changeView.bind(this);
     }
 
         componentDidMount(){
             //fetch information for all pages for the site.
     }
-        newWebPage(){
-            this.setState({view : "new"});
+        changeView(view){
+            this.setState({view : view});
         }
-    
         render(){
             var body = "";
             if(this.state.view === "list"){
-                body = <TableListingContainer newItem={this.newWebPage} title="My Pages" url="" />
+                body = <TableListingContainer newItem={() => this.changeView("new")} title="My Pages" url="" />
             }
             else if(this.state.view === "edit"){
                 body = null;
             }
             else if (this.state.view == "new"){
-                body = <NewPageForm />;
+                body = <NewPageForm submitCallback={() => this.changeView("list")} />;
             }
             else{
-                body = <TableListingContainer  newItem={this.newWebPage} title="My Pages" url="" />
+                body = <TableListingContainer  newItem={() => this.changeView("new")} title="My Pages" url="" />
             }
 
 

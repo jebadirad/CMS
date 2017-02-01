@@ -10610,17 +10610,10 @@ class Editor extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            value: ""
-        };
         this.onTextChange = this.onTextChange.bind(this);
     }
     onTextChange(text) {
-        this.setState({ value: text });
-    }
-    onSubmit(e) {
-        e.preventDefault();
-        //this.props.func(this.state.value);
+        this.props.onEditorChange(text);
     }
     componentDidMount() {}
 
@@ -10630,17 +10623,17 @@ class Editor extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
             { className: 'uk-section-default uk-box-shadow-xlarge', __self: this,
                 __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 30
+                    lineNumber: 22
                 },
                 __self: this
             },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_quill___default.a, { value: this.state.value,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_quill___default.a, { value: this.props.value,
                 theme: 'snow',
                 styles: false,
                 onChange: this.onTextChange, __self: this,
                 __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 31
+                    lineNumber: 23
                 },
                 __self: this
             })
@@ -10884,42 +10877,40 @@ class WebPageController extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Co
             view: "list"
         };
         //views : list edit 
-        this.newWebPage = this.newWebPage.bind(this);
+        this.changeView = this.changeView.bind(this);
     }
 
     componentDidMount() {
         //fetch information for all pages for the site.
     }
-    newWebPage() {
-        this.setState({ view: "new" });
+    changeView(view) {
+        this.setState({ view: view });
     }
-
     render() {
         var body = "";
         if (this.state.view === "list") {
-            body = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__TableListingContainer_jsx__["a" /* TableListingContainer */], { newItem: this.newWebPage, title: 'My Pages', url: '', __self: this,
+            body = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__TableListingContainer_jsx__["a" /* TableListingContainer */], { newItem: () => this.changeView("new"), title: 'My Pages', url: '', __self: this,
                 __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 26
+                    lineNumber: 25
                 },
                 __self: this
             });
         } else if (this.state.view === "edit") {
             body = null;
         } else if (this.state.view == "new") {
-            body = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__NewPageForm_jsx__["a" /* NewPageForm */], {
-                __self: this,
+            body = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__NewPageForm_jsx__["a" /* NewPageForm */], { submitCallback: () => this.changeView("list"), __self: this,
                 __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 32
+                    lineNumber: 31
                 },
                 __self: this
             });
         } else {
-            body = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__TableListingContainer_jsx__["a" /* TableListingContainer */], { newItem: this.newWebPage, title: 'My Pages', url: '', __self: this,
+            body = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__TableListingContainer_jsx__["a" /* TableListingContainer */], { newItem: () => this.changeView("new"), title: 'My Pages', url: '', __self: this,
                 __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 35
+                    lineNumber: 34
                 },
                 __self: this
             });
@@ -10931,7 +10922,7 @@ class WebPageController extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Co
                 __self: this,
                 __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 40
+                    lineNumber: 39
                 },
                 __self: this
             },
@@ -34740,11 +34731,13 @@ class NewPageForm extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
         this.previewHandler = this.previewHandler.bind(this);
     }
 
-    handleEditorChange() {
+    handleEditorChange(text) {
         //set the data;
+        this.setState({ editData: text });
     }
     submitHandler() {
         //ajax save and call props to navigate out
+        this.props.submitCallback();
     }
     previewHandler() {
         //later
@@ -34761,7 +34754,7 @@ class NewPageForm extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
             { className: 'uk-padding uk-padding-remove-horizontal', __self: this,
                 __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 34
+                    lineNumber: 36
                 },
                 __self: this
             },
@@ -34770,7 +34763,7 @@ class NewPageForm extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
                 { className: 'uk-heading-divider', __self: this,
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 35
+                        lineNumber: 37
                     },
                     __self: this
                 },
@@ -34781,7 +34774,7 @@ class NewPageForm extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
                 { className: 'uk-section uk-section-muted uk-padding', __self: this,
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 36
+                        lineNumber: 38
                     },
                     __self: this
                 },
@@ -34790,16 +34783,16 @@ class NewPageForm extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
                     { className: 'uk-text-lead', __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 37
+                            lineNumber: 39
                         },
                         __self: this
                     },
                     'Use the section below to modify the contents of the web page'
                 ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Editor_jsx__["a" /* Editor */], { onEditorChange: this.handleEditorChange, __self: this,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Editor_jsx__["a" /* Editor */], { value: this.state.editData, onEditorChange: this.handleEditorChange, __self: this,
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 38
+                        lineNumber: 40
                     },
                     __self: this
                 })
@@ -34809,7 +34802,7 @@ class NewPageForm extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
                 { className: 'uk-margin', __self: this,
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 40
+                        lineNumber: 42
                     },
                     __self: this
                 },
@@ -34818,7 +34811,7 @@ class NewPageForm extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
                     { onClick: this.previewHandler, className: 'uk-button uk-button-secondary', __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 41
+                            lineNumber: 43
                         },
                         __self: this
                     },
@@ -34829,7 +34822,7 @@ class NewPageForm extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Componen
                     { onClick: this.submitHandler, className: 'uk-button uk-button-primary', __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 42
+                            lineNumber: 44
                         },
                         __self: this
                     },

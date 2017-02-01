@@ -14,11 +14,13 @@ export class NewPageForm extends React.Component{
         }
 
 
-        handleEditorChange(){
+        handleEditorChange(text){
             //set the data;
+            this.setState({editData : text});
         }
         submitHandler(){
             //ajax save and call props to navigate out
+            this.props.submitCallback();
         }
         previewHandler(){
             //later
@@ -35,7 +37,7 @@ export class NewPageForm extends React.Component{
                     <h2 className="uk-heading-divider">Page Editor</h2>
                     <div className='uk-section uk-section-muted uk-padding'>
                         <p className="uk-text-lead">Use the section below to modify the contents of the web page</p>
-                      <Editor onEditorChange={this.handleEditorChange} />
+                      <Editor value={this.state.editData} onEditorChange={this.handleEditorChange} />
                     </div>
                     <div className="uk-margin">
                         <button onClick={this.previewHandler} className="uk-button uk-button-secondary">Preview</button>

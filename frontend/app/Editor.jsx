@@ -7,28 +7,20 @@ export class Editor extends React.Component{
 
         constructor(props){
             super(props);
-            this.state = {
-                value : ""
-            }
             this.onTextChange = this.onTextChange.bind(this);
             
 }
         onTextChange(text){
-            this.setState({value : text});
-        }
-        onSubmit(e){
-            e.preventDefault();
-            //this.props.func(this.state.value);
+            this.props.onEditorChange(text);
         }
         componentDidMount(){
-
-    }
+        }
 
     
         render(){
             return(
                 <div className='uk-section-default uk-box-shadow-xlarge'>
-                    <ReactQuill value={this.state.value} 
+                    <ReactQuill value={this.props.value} 
                     theme="snow"
                     styles={false}
                     onChange={this.onTextChange} />
