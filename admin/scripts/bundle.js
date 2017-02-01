@@ -6928,7 +6928,7 @@ class TableListing extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Compone
                 const cells = row.map(function (dataCell, index) {
                     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'td',
-                        { key: index, __self: this,
+                        { onClick: () => closure.props.onClickItem(1), key: index, __self: this,
                             __source: {
                                 fileName: _jsxFileName,
                                 lineNumber: 40
@@ -10874,43 +10874,58 @@ class WebPageController extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Co
     constructor(props) {
         super(props);
         this.state = {
-            view: "list"
+            view: "list",
+            editId: 0
         };
         //views : list edit 
         this.changeView = this.changeView.bind(this);
+        this.clickItemCallback = this.clickItemCallback.bind(this);
     }
 
+    clickItemCallback(id) {
+        this.setState({
+            view: "edit",
+            editId: id
+        });
+    }
     componentDidMount() {
         //fetch information for all pages for the site.
     }
+
     changeView(view) {
         this.setState({ view: view });
     }
     render() {
         var body = "";
         if (this.state.view === "list") {
-            body = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__TableListingContainer_jsx__["a" /* TableListingContainer */], { newItem: () => this.changeView("new"), title: 'My Pages', url: '', __self: this,
+            body = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__TableListingContainer_jsx__["a" /* TableListingContainer */], { onClickItem: this.clickItemCallback, newItem: () => this.changeView("new"), title: 'My Pages', url: '', __self: this,
                 __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 25
+                    lineNumber: 34
                 },
                 __self: this
             });
         } else if (this.state.view === "edit") {
-            body = null;
+            body = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__NewPageForm_jsx__["a" /* NewPageForm */], { submitCallback: () => this.changeView("list"), pageId: this.state.editId, __self: this,
+                __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 37
+                },
+                __self: this
+            });
         } else if (this.state.view == "new") {
             body = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__NewPageForm_jsx__["a" /* NewPageForm */], { submitCallback: () => this.changeView("list"), __self: this,
                 __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 31
+                    lineNumber: 40
                 },
                 __self: this
             });
         } else {
-            body = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__TableListingContainer_jsx__["a" /* TableListingContainer */], { newItem: () => this.changeView("new"), title: 'My Pages', url: '', __self: this,
+            body = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__TableListingContainer_jsx__["a" /* TableListingContainer */], { onClickItem: this.clickItemCallback, newItem: () => this.changeView("new"), title: 'My Pages', url: '', __self: this,
                 __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 34
+                    lineNumber: 43
                 },
                 __self: this
             });
@@ -10922,7 +10937,7 @@ class WebPageController extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Co
                 __self: this,
                 __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 39
+                    lineNumber: 48
                 },
                 __self: this
             },
@@ -11294,7 +11309,7 @@ class TableListingContainer extends __WEBPACK_IMPORTED_MODULE_0_react___default.
                     },
                     __self: this
                 },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__TableListing_jsx__["a" /* TableListing */], { url: '', filter: this.state.query, __self: this,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__TableListing_jsx__["a" /* TableListing */], { onClickItem: this.props.onClickItem, url: '', filter: this.state.query, __self: this,
                     __source: {
                         fileName: _jsxFileName,
                         lineNumber: 40

@@ -37,7 +37,7 @@ export class TableListing extends React.Component{
                    include = true; 
                 }
                 if(include){
-                    const cells = row.map(function(dataCell, index){return(<td key={index}>{dataCell}</td>);});
+                    const cells = row.map(function(dataCell, index){return(<td onClick={() => closure.props.onClickItem(1)} key={index}>{dataCell}</td>);});
                     var data = (<tr>{cells}</tr>);
                 }else{
                     const data = null;
