@@ -33,7 +33,7 @@ export class AdminPanel extends React.Component{
                 body =  <p>this is the frame</p>;
                 break;
                 case "webpages":
-                body = <WebPageController />;
+                body = <WebPageController url={this.props.url + this.props.pageUrl} />;
                 break;
                 case "editor":
                 body =<Editor />;
@@ -61,6 +61,6 @@ export class AdminPanel extends React.Component{
 
 
 ReactDOM.render(
-    <AdminPanel />,
+    <AdminPanel url="/admin" pageUrl="/pages" />,
   document.getElementById('main')
 );

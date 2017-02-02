@@ -37,7 +37,7 @@ export class TableListingContainer extends React.Component{
                         </div>
                 </div>
                 <div className="uk-section uk-section-default uk-padding-remove-top">
-                    <TableListing onClickItem={this.props.onClickItem} url="" filter={this.state.query}/>
+                    <TableListing headers={this.props.headers} data={this.props.data} onClickItem={this.props.onClickItem} filter={this.state.query}/>
                 </div>
             </div>
         );
