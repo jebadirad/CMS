@@ -16,6 +16,7 @@ $f3->route('GET /',
 );
 $f3->route('GET /test',
 function(){
+    echo"<p> this is a test</p>";
 });
 
 //pages section  - controller/method
@@ -23,7 +24,17 @@ function(){
 //
 
 $f3->route("GET /pages/@id [ajax]", "pagesController->query"
-)
+);
 
-
+$f3->route("GET /*", function(){
+        echo " 
+            <html>
+            <head>
+            </head>
+            <body>
+            <div id='main'></div>
+            <script src='scripts/bundle.js'></script>
+            </body>
+            </html>";
+    });
 ?>

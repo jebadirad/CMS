@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Editor} from "./Editor.jsx";
 import update from 'immutability-helper';
-export class NewPageForm extends React.Component{
+export default class NewPageForm extends React.Component{
 
         constructor(props){
             super(props);

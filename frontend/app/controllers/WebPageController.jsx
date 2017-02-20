@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {TableListingContainer} from "../TableListingContainer.jsx";
 import {NewPageForm} from "../NewPageForm.jsx";
-export class WebPageController extends React.Component{
+export default class WebPageController extends React.Component{
 
         constructor(props){
             super(props);
@@ -63,7 +63,7 @@ export class WebPageController extends React.Component{
             }
             return(
                 <div>
-                {body}
+                    <p>hello</p>
                 </div>
 
             );

@@ -25,7 +25,8 @@ class pagesController extends baseController{
         //get all records from 
         
     }
-
+    //will need to do some auth here and then insert 
+    
     public function add($f3, $params){
         $pages = new DB\SQL\Mapper($f3->get("DB"), "sitepages");
         $pages->TITLE= 'testtitle';

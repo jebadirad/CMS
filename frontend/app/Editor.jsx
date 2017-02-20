@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import ReactQuill from 'react-quill';
 require("style-loader!css-loader!..\\stylesheets\\quill\\quill.core.css");
 require("style-loader!css-loader!..\\stylesheets\\quill\\quill.snow.css");
-export class Editor extends React.Component{
+export default class Editor extends React.Component{
 
         constructor(props){
             super(props);

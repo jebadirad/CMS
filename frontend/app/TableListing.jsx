@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
-export class TableListing extends React.Component{
+export default class TableListing extends React.Component{
 
         constructor(props){
             super(props);
