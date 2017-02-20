@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {TableListing} from "./TableListing.jsx";
+import TableListing from "./TableListing.jsx";
 export default class TableListingContainer extends React.Component{
     constructor(props){
         super(props);

@@ -8,7 +8,7 @@ export default class Home extends React.Component{
     render(){
 
         return(<div>
-            <p>this is the frame</p>;
+            <p>this is the frame</p>
         </div>);
     }
 }

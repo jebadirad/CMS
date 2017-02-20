@@ -13396,8 +13396,7 @@ var Home = function (_React$Component) {
                         }
                     },
                     'this is the frame'
-                ),
-                ';'
+                )
             );
         }
     }]);
@@ -13494,18 +13493,24 @@ var AdminPanel = function (_React$Component) {
                         lineNumber: 40
                     }
                 },
+                _react2.default.createElement(_NavMenu2.default, {
+                    __self: this,
+                    __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 41
+                    }
+                }),
                 _react2.default.createElement(
-                    'p',
+                    _Container.Container,
                     {
                         __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 41
+                            lineNumber: 42
                         }
                     },
-                    'hi'
-                ),
-                this.props.children
+                    this.props.children
+                )
             );
         }
     }]);
@@ -13539,7 +13544,11 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 
 var _TableListingContainer = __webpack_require__(132);
 
+var _TableListingContainer2 = _interopRequireDefault(_TableListingContainer);
+
 var _NewPageForm = __webpack_require__(130);
+
+var _Constants = __webpack_require__(269);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -13584,7 +13593,7 @@ var WebPageController = function (_React$Component) {
             //this.props.url for ajax.
             var closure = this;
             var promise = $.ajax({
-                url: this.props.url + "/query",
+                url: _Constants.Urls.pagesController + "query",
                 method: "GET"
 
             });
@@ -13609,63 +13618,32 @@ var WebPageController = function (_React$Component) {
 
             var body = "";
             if (this.state.view === "list") {
-                body = _react2.default.createElement(_TableListingContainer.TableListingContainer, { onClickItem: this.clickItemCallback, headers: this.state.headers, data: this.state.data, newItem: function newItem() {
+                body = _react2.default.createElement(_TableListingContainer2.default, { onClickItem: this.clickItemCallback, headers: this.state.headers, data: this.state.data, newItem: function newItem() {
                         return _this2.changeView("new");
                     }, title: 'My Pages', __self: this,
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 52
+                        lineNumber: 53
                     }
                 });
             } else if (this.state.view === "edit") {
 
-                body = _react2.default.createElement(_NewPageForm.NewPageForm, { url: this.props.url, submitCallback: function submitCallback() {
-                        return _this2.changeView("list");
-                    }, pageId: this.state.editId, __self: this,
-                    __source: {
-                        fileName: _jsxFileName,
-                        lineNumber: 56
-                    }
-                });
+                //body = <NewPageForm url={this.props.url} submitCallback={() => this.changeView("list")} pageId={this.state.editId} />;
             } else if (this.state.view == "new") {
-                body = _react2.default.createElement(_NewPageForm.NewPageForm, { submitCallback: function submitCallback() {
-                        return _this2.changeView("list");
-                    }, __self: this,
-                    __source: {
-                        fileName: _jsxFileName,
-                        lineNumber: 59
-                    }
-                });
+                // body = <NewPageForm  submitCallback={() => this.changeView("list")} />;
             } else {
-                body = _react2.default.createElement(_TableListingContainer.TableListingContainer, { onClickItem: this.clickItemCallback, headers: this.state.headers, data: this.state.data, newItem: function newItem() {
-                        return _this2.changeView("new");
-                    }, title: 'My Pages', __self: this,
-                    __source: {
-                        fileName: _jsxFileName,
-                        lineNumber: 62
-                    }
-                });
-            }
+                    // body = <TableListingContainer onClickItem={this.clickItemCallback} headers={this.state.headers} data={this.state.data} newItem={() => this.changeView("new")} title="My Pages" />
+                }
             return _react2.default.createElement(
                 'div',
                 {
                     __self: this,
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 65
+                        lineNumber: 66
                     }
                 },
-                _react2.default.createElement(
-                    'p',
-                    {
-                        __self: this,
-                        __source: {
-                            fileName: _jsxFileName,
-                            lineNumber: 66
-                        }
-                    },
-                    'hello'
-                )
+                body
             );
         }
     }]);
@@ -14284,6 +14262,8 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 
 var _TableListing = __webpack_require__(131);
 
+var _TableListing2 = _interopRequireDefault(_TableListing);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -14417,7 +14397,7 @@ var TableListingContainer = function (_React$Component) {
                             lineNumber: 39
                         }
                     },
-                    _react2.default.createElement(_TableListing.TableListing, { headers: this.props.headers, data: this.props.data, onClickItem: this.props.onClickItem, filter: this.state.query, __self: this,
+                    _react2.default.createElement(_TableListing2.default, { headers: this.props.headers, data: this.props.data, onClickItem: this.props.onClickItem, filter: this.state.query, __self: this,
                         __source: {
                             fileName: _jsxFileName,
                             lineNumber: 40
@@ -50225,13 +50205,57 @@ var IndexComp = function (_React$Component) {
     _createClass(IndexComp, [{
         key: 'render',
         value: function render() {
-            return _react2.default.createElement('span', {
-                __self: this,
-                __source: {
-                    fileName: _jsxFileName,
-                    lineNumber: 18
-                }
-            });
+            return _react2.default.createElement(
+                _reactRouter.Router,
+                { history: _reactRouter.browserHistory, __self: this,
+                    __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 18
+                    }
+                },
+                _react2.default.createElement(
+                    _reactRouter.Route,
+                    { path: '/', component: _app2.default, __self: this,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 19
+                        }
+                    },
+                    _react2.default.createElement(_reactRouter.IndexRoute, { component: _Home2.default, __self: this,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 20
+                        }
+                    }),
+                    _react2.default.createElement(
+                        _reactRouter.Route,
+                        { path: '/webpages', component: _WebPageController2.default, __self: this,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 21
+                            }
+                        },
+                        _react2.default.createElement(_reactRouter.IndexRoute, { component: _WebPageController2.default, __self: this,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 22
+                            }
+                        }),
+                        _react2.default.createElement(_reactRouter.Route, { path: '/webpages/new', component: NewPageForm, __self: this,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 23
+                            }
+                        })
+                    ),
+                    _react2.default.createElement(_reactRouter.Route, { path: '/editor', component: _Editor2.default, __self: this,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 25
+                        }
+                    })
+                )
+            );
         }
     }]);
 
@@ -50241,42 +50265,27 @@ var IndexComp = function (_React$Component) {
 exports.default = IndexComp;
 
 
-_reactDom2.default.render(_react2.default.createElement(
-    _reactRouter.Router,
-    { history: _reactRouter.browserHistory, __self: undefined,
-        __source: {
-            fileName: _jsxFileName,
-            lineNumber: 25
-        }
-    },
-    _react2.default.createElement(
-        _reactRouter.Route,
-        { path: '/', component: _app2.default, __self: undefined,
-            __source: {
-                fileName: _jsxFileName,
-                lineNumber: 26
-            }
-        },
-        _react2.default.createElement(_reactRouter.IndexRoute, { component: _Home2.default, __self: undefined,
-            __source: {
-                fileName: _jsxFileName,
-                lineNumber: 27
-            }
-        }),
-        _react2.default.createElement(_reactRouter.Route, { path: '/about', component: _WebPageController2.default, __self: undefined,
-            __source: {
-                fileName: _jsxFileName,
-                lineNumber: 28
-            }
-        }),
-        _react2.default.createElement(_reactRouter.Route, { path: 'editor', component: _Editor2.default, __self: undefined,
-            __source: {
-                fileName: _jsxFileName,
-                lineNumber: 29
-            }
-        })
-    )
-), document.getElementById('main'));
+_reactDom2.default.render(_react2.default.createElement(IndexComp, {
+    __self: undefined,
+    __source: {
+        fileName: _jsxFileName,
+        lineNumber: 36
+    }
+}), document.getElementById('main'));
+
+/***/ }),
+/* 269 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var Urls = exports.Urls = {
+    pagesController: "/pages/"
+};
 
 /***/ })
 /******/ ]);

@@ -15,21 +15,24 @@ export default class IndexComp extends React.Component{
 
     render(){
     return( 
-                <span></span>
+                 <Router history={browserHistory}>
+                    <Route path='/' component={AdminPanel} >
+                        <IndexRoute component={Home} />
+                        <Route path="/webpages" component={WebPageController}>
+                            <IndexRoute component={WebPageController}/>
+                            <Route path="/webpages/new" component={NewPageForm} />
+                        </Route>
+                        <Route path="/editor" component={Editor} />
+                    </Route>
+                   
+
+                </Router>
                 );
     }
 
 }
 
 ReactDOM.render(
-    <Router history={browserHistory}>
-                    <Route path='/' component={AdminPanel} >
-                        <IndexRoute component={Home} />
-                        <Route path="/about" component={WebPageController}/>
-                        <Route path="editor" component={Editor} />
-                    </Route>
-                   
-
-                </Router>,
+   <IndexComp />,
   document.getElementById('main')
 );

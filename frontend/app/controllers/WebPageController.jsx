@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {TableListingContainer} from "../TableListingContainer.jsx";
+import TableListingContainer from "../TableListingContainer.jsx";
 import {NewPageForm} from "../NewPageForm.jsx";
+import {Urls} from '../Constants.jsx';
 export default class WebPageController extends React.Component{
 
         constructor(props){
@@ -27,7 +28,7 @@ export default class WebPageController extends React.Component{
             //this.props.url for ajax.
             var closure = this;
             var promise = $.ajax({
-                url: this.props.url + "/query",
+                url: Urls.pagesController + "query",
                 method: "GET",
 
             });
@@ -49,21 +50,21 @@ export default class WebPageController extends React.Component{
         render(){
             var body = "";
             if(this.state.view === "list"){
-                body = <TableListingContainer onClickItem={this.clickItemCallback} headers={this.state.headers} data={this.state.data} newItem={() => this.changeView("new")} title="My Pages" />
+               body = <TableListingContainer onClickItem={this.clickItemCallback} headers={this.state.headers} data={this.state.data} newItem={() => this.changeView("new")} title="My Pages" />
             }
             else if(this.state.view === "edit"){
 
-                body = <NewPageForm url={this.props.url} submitCallback={() => this.changeView("list")} pageId={this.state.editId} />;
+                //body = <NewPageForm url={this.props.url} submitCallback={() => this.changeView("list")} pageId={this.state.editId} />;
             }
             else if (this.state.view == "new"){
-                body = <NewPageForm  submitCallback={() => this.changeView("list")} />;
+               // body = <NewPageForm  submitCallback={() => this.changeView("list")} />;
             }
             else{
-                body = <TableListingContainer onClickItem={this.clickItemCallback} headers={this.state.headers} data={this.state.data} newItem={() => this.changeView("new")} title="My Pages" />
+               // body = <TableListingContainer onClickItem={this.clickItemCallback} headers={this.state.headers} data={this.state.data} newItem={() => this.changeView("new")} title="My Pages" />
             }
             return(
                 <div>
-                    <p>hello</p>
+                {body}
                 </div>
 
             );

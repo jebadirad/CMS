@@ -38,8 +38,10 @@ export default class AdminPanel extends React.Component{
 
             return(
                 <div>
-                <p>hi</p>
+                <NavMenu />
+                <Container>
                        {this.props.children}
+                       </Container>
                        </div>
             );
         }

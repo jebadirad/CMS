@@ -23,8 +23,9 @@ function(){
 
 //
 
-$f3->route("GET /pages/@id [ajax]", "pagesController->query"
+$f3->route("GET /pages/@id [ajax]", "pagesController->get"
 );
+$f3->route("GET /pages/query", "pagesController->query");
 
 $f3->route("GET /*", function(){
         echo " 
