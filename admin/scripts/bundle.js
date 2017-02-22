@@ -9155,11 +9155,9 @@ var _react = __webpack_require__(4);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(13);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
 var _Editor = __webpack_require__(78);
+
+var _Editor2 = _interopRequireDefault(_Editor);
 
 var _immutabilityHelper = __webpack_require__(43);
 
@@ -9245,7 +9243,7 @@ var NewPageForm = function (_React$Component) {
                 { className: 'uk-padding uk-padding-remove-horizontal', __self: this,
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 62
+                        lineNumber: 61
                     }
                 },
                 _react2.default.createElement(
@@ -9253,7 +9251,7 @@ var NewPageForm = function (_React$Component) {
                     { className: 'uk-heading-divider', __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 63
+                            lineNumber: 62
                         }
                     },
                     'Page Editor'
@@ -9263,7 +9261,7 @@ var NewPageForm = function (_React$Component) {
                     { className: 'uk-section uk-section-muted uk-padding', __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 64
+                            lineNumber: 63
                         }
                     },
                     _react2.default.createElement(
@@ -9271,7 +9269,7 @@ var NewPageForm = function (_React$Component) {
                         { className: 'uk-text-lead', __self: this,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 65
+                                lineNumber: 64
                             }
                         },
                         'Use the section below to modify the contents of the web page'
@@ -9279,19 +9277,19 @@ var NewPageForm = function (_React$Component) {
                     _react2.default.createElement('input', { placeholder: 'title', value: this.state.editData.TITLE, __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 66
+                            lineNumber: 65
                         }
                     }),
                     _react2.default.createElement('input', { placeholder: 'slug', value: this.state.editData.SLUG, __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 67
+                            lineNumber: 66
                         }
                     }),
-                    _react2.default.createElement(_Editor.Editor, { value: this.state.editData.BODY, onEditorChange: this.handleEditorChange, __self: this,
+                    _react2.default.createElement(_Editor2.default, { value: this.state.editData.BODY, onEditorChange: this.handleEditorChange, __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 68
+                            lineNumber: 67
                         }
                     })
                 ),
@@ -9300,7 +9298,7 @@ var NewPageForm = function (_React$Component) {
                     { className: 'uk-margin', __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 70
+                            lineNumber: 69
                         }
                     },
                     _react2.default.createElement(
@@ -9308,7 +9306,7 @@ var NewPageForm = function (_React$Component) {
                         { onClick: this.previewHandler, className: 'uk-button uk-button-secondary', __self: this,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 71
+                                lineNumber: 70
                             }
                         },
                         'Preview'
@@ -9318,7 +9316,7 @@ var NewPageForm = function (_React$Component) {
                         { onClick: this.submitHandler, className: 'uk-button uk-button-primary', __self: this,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 72
+                                lineNumber: 71
                             }
                         },
                         'Submit'
@@ -13760,86 +13758,24 @@ var WebPageController = function (_React$Component) {
     function WebPageController(props) {
         _classCallCheck(this, WebPageController);
 
-        var _this = _possibleConstructorReturn(this, (WebPageController.__proto__ || Object.getPrototypeOf(WebPageController)).call(this, props));
+        return _possibleConstructorReturn(this, (WebPageController.__proto__ || Object.getPrototypeOf(WebPageController)).call(this, props));
 
-        _this.state = {
-            view: "list",
-            editId: 0,
-            headers: ["ID", "Title", "Slug", "Created By", "Modified By"],
-            data: []
-        };
         //views : list edit 
-        _this.changeView = _this.changeView.bind(_this);
-        _this.clickItemCallback = _this.clickItemCallback.bind(_this);
-        return _this;
     }
 
     _createClass(WebPageController, [{
-        key: 'clickItemCallback',
-        value: function clickItemCallback(id) {
-            this.setState({
-                view: "edit",
-                editId: id
-            });
-        }
-    }, {
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            //fetch information for all pages for the site.
-            //this.props.url for ajax.
-            var closure = this;
-            var promise = $.ajax({
-                url: _Constants.Urls.pagesController + "query",
-                method: "GET"
-
-            });
-            promise.done(function (data) {
-                var mappedData = data.map(function (page) {
-                    return [page.ID, page.TITLE, page.SLUG, page.CREATEDBY, page.MODIFIEDBY];
-                });
-                closure.setState({ data: mappedData });
-            });
-            promise.fail(function () {});
-            //fetch table headers based on something maybe we pass in a url or a type?
-        }
-    }, {
-        key: 'changeView',
-        value: function changeView(view) {
-            this.setState({ view: view });
-        }
-    }, {
         key: 'render',
         value: function render() {
-            var _this2 = this;
-
-            var body = "";
-            if (this.state.view === "list") {
-                body = _react2.default.createElement(_TableListingContainer2.default, { onClickItem: this.clickItemCallback, headers: this.state.headers, data: this.state.data, newItem: function newItem() {
-                        return _this2.changeView("new");
-                    }, title: 'My Pages', __self: this,
-                    __source: {
-                        fileName: _jsxFileName,
-                        lineNumber: 53
-                    }
-                });
-            } else if (this.state.view === "edit") {
-
-                //body = <NewPageForm url={this.props.url} submitCallback={() => this.changeView("list")} pageId={this.state.editId} />;
-            } else if (this.state.view == "new") {
-                // body = <NewPageForm  submitCallback={() => this.changeView("list")} />;
-            } else {
-                    // body = <TableListingContainer onClickItem={this.clickItemCallback} headers={this.state.headers} data={this.state.data} newItem={() => this.changeView("new")} title="My Pages" />
-                }
             return _react2.default.createElement(
                 'div',
                 {
                     __self: this,
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 66
+                        lineNumber: 15
                     }
                 },
-                body
+                this.props.children
             );
         }
     }]);
@@ -14275,10 +14211,14 @@ var TableListingContainer = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (TableListingContainer.__proto__ || Object.getPrototypeOf(TableListingContainer)).call(this, props));
 
         _this.state = {
+
+            editId: 0,
+            headers: ["ID", "Title", "Slug", "Created By", "Modified By"],
+            data: [],
             query: ""
         };
+
         _this.onFilterChange = _this.onFilterChange.bind(_this);
-        _this.newItemHandler = _this.newItemHandler.bind(_this);
         return _this;
     }
 
@@ -14286,11 +14226,21 @@ var TableListingContainer = function (_React$Component) {
         key: 'componentDidMount',
         value: function componentDidMount() {
             this.makeGrid.setAttribute("uk-grid", "");
-        }
-    }, {
-        key: 'newItemHandler',
-        value: function newItemHandler() {
-            this.props.newItem();
+            var closure = this;
+            var promise = $.ajax({
+                url: this.props.url,
+                method: "GET"
+            });
+            promise.done(function (data) {
+                var mappedData = data.map(function (page) {
+                    return [page.ID, page.TITLE, page.SLUG, page.CREATEDBY, page.MODIFIEDBY];
+                });
+                //implement immutable
+
+                closure.setState({ data: mappedData });
+            });
+            promise.fail(function () {});
+            //fetch table headers bas
         }
     }, {
         key: 'onFilterChange',
@@ -14307,7 +14257,7 @@ var TableListingContainer = function (_React$Component) {
                 { className: 'uk-padding uk-padding-remove-horizontal', __self: this,
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 25
+                        lineNumber: 42
                     }
                 },
                 _react2.default.createElement(
@@ -14315,7 +14265,7 @@ var TableListingContainer = function (_React$Component) {
                     { className: 'uk-heading-divider', __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 26
+                            lineNumber: 43
                         }
                     },
                     this.props.title
@@ -14325,7 +14275,7 @@ var TableListingContainer = function (_React$Component) {
                     { className: 'uk-section uk-section-muted uk-padding', __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 27
+                            lineNumber: 44
                         }
                     },
                     _react2.default.createElement(
@@ -14335,7 +14285,7 @@ var TableListingContainer = function (_React$Component) {
                             }, __self: this,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 28
+                                lineNumber: 45
                             }
                         },
                         _react2.default.createElement(
@@ -14343,7 +14293,7 @@ var TableListingContainer = function (_React$Component) {
                             { className: 'uk-width-3-4', __self: this,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 29
+                                    lineNumber: 46
                                 }
                             },
                             _react2.default.createElement(
@@ -14351,13 +14301,13 @@ var TableListingContainer = function (_React$Component) {
                                 { className: 'uk-form-controls', __self: this,
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 30
+                                        lineNumber: 47
                                     }
                                 },
                                 _react2.default.createElement('input', { className: 'uk-input uk-form-width-large', type: 'text', placeholder: 'Filter', onChange: this.onFilterChange, __self: this,
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 31
+                                        lineNumber: 48
                                     }
                                 })
                             )
@@ -14367,15 +14317,15 @@ var TableListingContainer = function (_React$Component) {
                             { className: 'uk-form-controls uk-width-1-4', __self: this,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 34
+                                    lineNumber: 51
                                 }
                             },
                             _react2.default.createElement(
                                 'button',
-                                { onClick: this.newItemHandler, className: 'uk-button uk-button-primary', __self: this,
+                                { className: 'uk-button uk-button-primary', __self: this,
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 35
+                                        lineNumber: 52
                                     }
                                 },
                                 'New Item'
@@ -14388,13 +14338,13 @@ var TableListingContainer = function (_React$Component) {
                     { className: 'uk-section uk-section-default uk-padding-remove-top', __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 39
+                            lineNumber: 56
                         }
                     },
-                    _react2.default.createElement(_TableListing2.default, { headers: this.props.headers, data: this.props.data, onClickItem: this.props.onClickItem, filter: this.state.query, __self: this,
+                    _react2.default.createElement(_TableListing2.default, { headers: this.state.headers, data: this.state.data, filter: this.state.query, __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 40
+                            lineNumber: 57
                         }
                     })
                 )
@@ -50165,6 +50115,10 @@ var _WebPageController = __webpack_require__(129);
 
 var _WebPageController2 = _interopRequireDefault(_WebPageController);
 
+var _TableListingWebPages = __webpack_require__(307);
+
+var _TableListingWebPages2 = _interopRequireDefault(_TableListingWebPages);
+
 var _NewPageForm = __webpack_require__(79);
 
 var _NewPageForm2 = _interopRequireDefault(_NewPageForm);
@@ -50172,6 +50126,10 @@ var _NewPageForm2 = _interopRequireDefault(_NewPageForm);
 var _Editor = __webpack_require__(78);
 
 var _Editor2 = _interopRequireDefault(_Editor);
+
+var _TableListingContainer = __webpack_require__(133);
+
+var _TableListingContainer2 = _interopRequireDefault(_TableListingContainer);
 
 var _reactRouter = __webpack_require__(44);
 
@@ -50208,7 +50166,7 @@ var IndexComp = function (_React$Component) {
                 { history: _reactRouter.browserHistory, __self: this,
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 19
+                        lineNumber: 21
                     }
                 },
                 _react2.default.createElement(
@@ -50216,13 +50174,13 @@ var IndexComp = function (_React$Component) {
                     { path: '/admin', component: _app2.default, __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 20
+                            lineNumber: 22
                         }
                     },
                     _react2.default.createElement(_reactRouter.IndexRoute, { component: _Home2.default, __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 21
+                            lineNumber: 23
                         }
                     }),
                     _react2.default.createElement(
@@ -50230,26 +50188,32 @@ var IndexComp = function (_React$Component) {
                         { path: '/admin/webpages', component: _WebPageController2.default, __self: this,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 22
+                                lineNumber: 24
                             }
                         },
-                        _react2.default.createElement(_reactRouter.IndexRoute, { component: _WebPageController2.default, __self: this,
+                        _react2.default.createElement(_reactRouter.IndexRoute, { component: _TableListingWebPages2.default, __self: this,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 23
+                                lineNumber: 25
                             }
                         }),
                         _react2.default.createElement(_reactRouter.Route, { path: '/admin/webpages/new', component: _NewPageForm2.default, __self: this,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 24
+                                lineNumber: 26
+                            }
+                        }),
+                        _react2.default.createElement(_reactRouter.Route, { path: '/admin/webpages/edit/:ID', componet: _Editor2.default, __self: this,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 27
                             }
                         })
                     ),
                     _react2.default.createElement(_reactRouter.Route, { path: '/admin/editor', component: _Editor2.default, __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 26
+                            lineNumber: 29
                         }
                     })
                 )
@@ -50267,7 +50231,7 @@ _reactDom2.default.render(_react2.default.createElement(IndexComp, {
     __self: undefined,
     __source: {
         fileName: _jsxFileName,
-        lineNumber: 37
+        lineNumber: 40
     }
 }), document.getElementById('main'));
 
@@ -53276,6 +53240,78 @@ var CustomNavLink = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = CustomNavLink;
+
+/***/ }),
+/* 307 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var _jsxFileName = 'C:\\Users\\jondavid-admin\\git\\CMS\\frontend\\app\\TableListingWebPages.jsx';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _jquery = __webpack_require__(158);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _Constants = __webpack_require__(130);
+
+var _TableListingContainer = __webpack_require__(133);
+
+var _TableListingContainer2 = _interopRequireDefault(_TableListingContainer);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var TableListingWebPages = function (_React$Component) {
+    _inherits(TableListingWebPages, _React$Component);
+
+    function TableListingWebPages(props) {
+        _classCallCheck(this, TableListingWebPages);
+
+        return _possibleConstructorReturn(this, (TableListingWebPages.__proto__ || Object.getPrototypeOf(TableListingWebPages)).call(this, props));
+    }
+
+    _createClass(TableListingWebPages, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                {
+                    __self: this,
+                    __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 13
+                    }
+                },
+                _react2.default.createElement(_TableListingContainer2.default, { url: _Constants.Urls.pagesController + "query", title: 'My Pages', __self: this,
+                    __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 14
+                    }
+                })
+            );
+        }
+    }]);
+
+    return TableListingWebPages;
+}(_react2.default.Component);
+
+exports.default = TableListingWebPages;
 
 /***/ })
 /******/ ]);

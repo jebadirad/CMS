@@ -4,17 +4,34 @@ import TableListing from "./TableListing.jsx";
 export default class TableListingContainer extends React.Component{
     constructor(props){
         super(props);
-        this.state ={
-            query : ""
-        };
+         this.state = {
+                
+                editId : 0,
+                headers : ["ID", "Title", "Slug", "Created By", "Modified By"],
+                data : [],
+                query: ""
+            };
+     
         this.onFilterChange = this.onFilterChange.bind(this);
-        this.newItemHandler = this.newItemHandler.bind(this);
 }
     componentDidMount(){
     this.makeGrid.setAttribute("uk-grid" , "");
-    }
-    newItemHandler(){
-        this.props.newItem();
+    var closure = this;
+            var promise = $.ajax({
+                url: this.props.url,
+                method: "GET",
+            });
+            promise.done(function(data){
+                var mappedData = data.map(function(page){
+                    return [page.ID, page.TITLE, page.SLUG, page.CREATEDBY, page.MODIFIEDBY];
+                });
+                //implement immutable
+
+                closure.setState({data : mappedData});
+            });
+            promise.fail(function(){
+            });
+            //fetch table headers bas
     }
     onFilterChange(event){
         this.setState({query : event.target.value});
@@ -32,12 +49,12 @@ export default class TableListingContainer extends React.Component{
                                 </div>
                             </div>
                             <div className="uk-form-controls uk-width-1-4">
-                                <button onClick={this.newItemHandler} className="uk-button uk-button-primary">New Item</button>
+                                <button className="uk-button uk-button-primary">New Item</button>
                             </div>
                         </div>
                 </div>
                 <div className="uk-section uk-section-default uk-padding-remove-top">
-                    <TableListing headers={this.props.headers} data={this.props.data} onClickItem={this.props.onClickItem} filter={this.state.query}/>
+                    <TableListing headers={this.state.headers} data={this.state.data}  filter={this.state.query}/>
                 </div>
             </div>
         );

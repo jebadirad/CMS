@@ -1,6 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import {Editor} from "./Editor.jsx";
+import Editor from "./Editor.jsx";
 import update from 'immutability-helper';
 export default class NewPageForm extends React.Component{
 
