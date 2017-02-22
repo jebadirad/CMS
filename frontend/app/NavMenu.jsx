@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Link} from 'react-router';
+import {NavLink } from 'react-router-dom';
+import {NavUrls} from './Constants.jsx';
 export default class NavMenu extends React.Component{
 
         constructor(props){
@@ -40,14 +41,12 @@ export default class NavMenu extends React.Component{
                         <div className="uk-offcanvas-bar">
                             <div className='uk-width-1-2@s uk-width-2-5@m'>
                                 <ul className='uk-nav uk-nav-default'>
+                                        <NavLink activeClassName="uk-active" to={NavUrls.home} exact={true} ><li>Home</li></NavLink>
                                     <li>
-                                        <Link activeClassName="active" to="/" onlyActiveOnIndex={true}>Home</Link>
+                                        <NavLink activeClassName="uk-active" to={NavUrls.webpages} exact={true}><span className={canvasClose} >Web Pages</span></NavLink>
                                     </li>
-                                    <li>
-                                        <Link activeClassName="active" to="/webpages">Web Pages</Link>
-                                    </li>
-                                    <li>
-                                        <Link activeClassName="active" to="/editor">Editor</Link>
+                                    <li >
+                                        <NavLink activeClassName="uk-active" to={NavUrls.editor} className={canvasClose} exact={true}>Editor</NavLink>
                                     </li>
                                 </ul>
                             </div>

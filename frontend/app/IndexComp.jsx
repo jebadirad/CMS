@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import {Container} from "./Container.jsx";
 import Home from './Home.jsx';
 import WebPageController from "./controllers/WebPageController.jsx";
+import NewPageForm from './NewPageForm.jsx';
 import Editor from './Editor.jsx';
 import {Router, Route, browserHistory, IndexRoute} from 'react-router';
 import update from "immutability-helper";
@@ -16,13 +17,13 @@ export default class IndexComp extends React.Component{
     render(){
     return( 
                  <Router history={browserHistory}>
-                    <Route path='/' component={AdminPanel} >
+                    <Route path='/admin' component={AdminPanel} >
                         <IndexRoute component={Home} />
-                        <Route path="/webpages" component={WebPageController}>
+                        <Route path="/admin/webpages" component={WebPageController}>
                             <IndexRoute component={WebPageController}/>
-                            <Route path="/webpages/new" component={NewPageForm} />
+                            <Route path="/admin/webpages/new" component={NewPageForm} />
                         </Route>
-                        <Route path="/editor" component={Editor} />
+                        <Route path="/admin/editor" component={Editor} />
                     </Route>
                    
 

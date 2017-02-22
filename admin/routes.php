@@ -9,12 +9,12 @@ $f3->route('GET /',
             </head>
             <body>
             <div id='main'></div>
-            <script src='scripts/bundle.js'></script>
+            <script src='/scripts/bundle.js'></script>
             </body>
             </html>";
     }
 );
-$f3->route('GET /test',
+$f3->route('GET /api/test',
 function(){
     echo"<p> this is a test</p>";
 });
@@ -23,9 +23,9 @@ function(){
 
 //
 
-$f3->route("GET /pages/@id [ajax]", "pagesController->get"
+$f3->route("GET /api/pages/@id [ajax]", "pagesController->get"
 );
-$f3->route("GET /pages/query", "pagesController->query");
+$f3->route("GET /api/pages/query", "pagesController->query");
 
 $f3->route("GET /*", function(){
         echo " 
@@ -34,7 +34,7 @@ $f3->route("GET /*", function(){
             </head>
             <body>
             <div id='main'></div>
-            <script src='scripts/bundle.js'></script>
+            <script src='/scripts/bundle.js'></script>
             </body>
             </html>";
     });
