@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {NavLink } from 'react-router-dom';
+import CustomNavLink from './CustomNavLink.jsx';
 import {NavUrls} from './Constants.jsx';
 export default class NavMenu extends React.Component{
 
@@ -23,8 +23,10 @@ export default class NavMenu extends React.Component{
     
         render(){
             const active = "uk-active";
-            const canvasClose = "uk-offcanvas-close";
+
             var closure = this;
+
+            var navId = "offNavMenu"
             return(
                 <div>
                     <div className='uk-navbar-container' ref={(div) => {this.menuContainer = div;}}>
@@ -37,17 +39,13 @@ export default class NavMenu extends React.Component{
                            </a>
                         </div>
                     </div>
-                    <div id='offNavMenu' ref={(div) => {this.offCanvas = div;}}>
+                    <div id={navId} ref={(div) => {this.offCanvas = div;}}>
                         <div className="uk-offcanvas-bar">
                             <div className='uk-width-1-2@s uk-width-2-5@m'>
                                 <ul className='uk-nav uk-nav-default'>
-                                        <NavLink activeClassName="uk-active" to={NavUrls.home} exact={true} ><li>Home</li></NavLink>
-                                    <li>
-                                        <NavLink activeClassName="uk-active" to={NavUrls.webpages} exact={true}><span className={canvasClose} >Web Pages</span></NavLink>
-                                    </li>
-                                    <li >
-                                        <NavLink activeClassName="uk-active" to={NavUrls.editor} className={canvasClose} exact={true}>Editor</NavLink>
-                                    </li>
+                                        <CustomNavLink menuToClose={navId} activeClassName="uk-active" to={NavUrls.home} exact={true} >Home</CustomNavLink>
+                                        <CustomNavLink menuToClose={navId} activeClassName="uk-active" to={NavUrls.webpages} exact={true}>Web Pages</CustomNavLink>
+                                        <CustomNavLink menuToClose={navId} activeClassName="uk-active" to={NavUrls.editor} exact={true}>Editor</CustomNavLink>
                                 </ul>
                             </div>
                         </div>

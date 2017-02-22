@@ -13892,7 +13892,9 @@ var _reactDom = __webpack_require__(13);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _reactRouterDom = __webpack_require__(291);
+var _CustomNavLink = __webpack_require__(306);
+
+var _CustomNavLink2 = _interopRequireDefault(_CustomNavLink);
 
 var _Constants = __webpack_require__(130);
 
@@ -13936,15 +13938,17 @@ var NavMenu = function (_React$Component) {
             var _this2 = this;
 
             var active = "uk-active";
-            var canvasClose = "uk-offcanvas-close";
+
             var closure = this;
+
+            var navId = "offNavMenu";
             return _react2.default.createElement(
                 'div',
                 {
                     __self: this,
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 29
+                        lineNumber: 31
                     }
                 },
                 _react2.default.createElement(
@@ -13954,7 +13958,7 @@ var NavMenu = function (_React$Component) {
                         }, __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 30
+                            lineNumber: 32
                         }
                     },
                     _react2.default.createElement(
@@ -13962,7 +13966,7 @@ var NavMenu = function (_React$Component) {
                         { className: 'uk-navbar-left', __self: this,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 31
+                                lineNumber: 33
                             }
                         },
                         _react2.default.createElement(
@@ -13972,7 +13976,7 @@ var NavMenu = function (_React$Component) {
                                 }, __self: this,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 32
+                                    lineNumber: 34
                                 }
                             },
                             _react2.default.createElement('span', { ref: function ref(div) {
@@ -13980,7 +13984,7 @@ var NavMenu = function (_React$Component) {
                                 }, __self: this,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 33
+                                    lineNumber: 35
                                 }
                             })
                         ),
@@ -13991,7 +13995,7 @@ var NavMenu = function (_React$Component) {
                                 }, __self: this,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 35
+                                    lineNumber: 37
                                 }
                             },
                             'Logo'
@@ -14000,12 +14004,12 @@ var NavMenu = function (_React$Component) {
                 ),
                 _react2.default.createElement(
                     'div',
-                    { id: 'offNavMenu', ref: function ref(div) {
+                    { id: navId, ref: function ref(div) {
                             _this2.offCanvas = div;
                         }, __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 40
+                            lineNumber: 42
                         }
                     },
                     _react2.default.createElement(
@@ -14013,7 +14017,7 @@ var NavMenu = function (_React$Component) {
                         { className: 'uk-offcanvas-bar', __self: this,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 41
+                                lineNumber: 43
                             }
                         },
                         _react2.default.createElement(
@@ -14021,7 +14025,7 @@ var NavMenu = function (_React$Component) {
                             { className: 'uk-width-1-2@s uk-width-2-5@m', __self: this,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 42
+                                    lineNumber: 44
                                 }
                             },
                             _react2.default.createElement(
@@ -14029,77 +14033,38 @@ var NavMenu = function (_React$Component) {
                                 { className: 'uk-nav uk-nav-default', __self: this,
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 43
+                                        lineNumber: 45
                                     }
                                 },
                                 _react2.default.createElement(
-                                    _reactRouterDom.NavLink,
-                                    { activeClassName: 'uk-active', to: _Constants.NavUrls.home, exact: true, __self: this,
+                                    _CustomNavLink2.default,
+                                    { menuToClose: navId, activeClassName: 'uk-active', to: _Constants.NavUrls.home, exact: true, __self: this,
                                         __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 44
+                                            lineNumber: 46
                                         }
                                     },
-                                    _react2.default.createElement(
-                                        'li',
-                                        {
-                                            __self: this,
-                                            __source: {
-                                                fileName: _jsxFileName,
-                                                lineNumber: 44
-                                            }
-                                        },
-                                        'Home'
-                                    )
+                                    'Home'
                                 ),
                                 _react2.default.createElement(
-                                    'li',
-                                    {
-                                        __self: this,
+                                    _CustomNavLink2.default,
+                                    { menuToClose: navId, activeClassName: 'uk-active', to: _Constants.NavUrls.webpages, exact: true, __self: this,
                                         __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 45
+                                            lineNumber: 47
                                         }
                                     },
-                                    _react2.default.createElement(
-                                        _reactRouterDom.NavLink,
-                                        { activeClassName: 'uk-active', to: _Constants.NavUrls.webpages, exact: true, __self: this,
-                                            __source: {
-                                                fileName: _jsxFileName,
-                                                lineNumber: 46
-                                            }
-                                        },
-                                        _react2.default.createElement(
-                                            'span',
-                                            { className: canvasClose, __self: this,
-                                                __source: {
-                                                    fileName: _jsxFileName,
-                                                    lineNumber: 46
-                                                }
-                                            },
-                                            'Web Pages'
-                                        )
-                                    )
+                                    'Web Pages'
                                 ),
                                 _react2.default.createElement(
-                                    'li',
-                                    {
-                                        __self: this,
+                                    _CustomNavLink2.default,
+                                    { menuToClose: navId, activeClassName: 'uk-active', to: _Constants.NavUrls.editor, exact: true, __self: this,
                                         __source: {
                                             fileName: _jsxFileName,
                                             lineNumber: 48
                                         }
                                     },
-                                    _react2.default.createElement(
-                                        _reactRouterDom.NavLink,
-                                        { activeClassName: 'uk-active', to: _Constants.NavUrls.editor, className: canvasClose, exact: true, __self: this,
-                                            __source: {
-                                                fileName: _jsxFileName,
-                                                lineNumber: 49
-                                            }
-                                        },
-                                        'Editor'
-                                    )
+                                    'Editor'
                                 )
                             )
                         )
@@ -53225,6 +53190,92 @@ var valueEqual = function valueEqual(a, b) {
 };
 
 exports.default = valueEqual;
+
+/***/ }),
+/* 306 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var _jsxFileName = 'C:\\Users\\jondavid-admin\\git\\CMS\\frontend\\app\\CustomNavLink.jsx';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(291);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var CustomNavLink = function (_React$Component) {
+    _inherits(CustomNavLink, _React$Component);
+
+    function CustomNavLink(props) {
+        _classCallCheck(this, CustomNavLink);
+
+        var _this = _possibleConstructorReturn(this, (CustomNavLink.__proto__ || Object.getPrototypeOf(CustomNavLink)).call(this, props));
+
+        _this.closeMenu = _this.closeMenu.bind(_this);
+        return _this;
+    }
+
+    _createClass(CustomNavLink, [{
+        key: 'closeMenu',
+        value: function closeMenu() {
+            UIkit.offcanvas("#" + this.props.menuToClose)[0].toggle();
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var canvasClose = "uk-offcanvas-close";
+            var active = null;
+            if (this.props.exact) {
+                if (location.pathname == this.props.to || location.pathname.substr(0, location.pathname.length - 1) == this.props.to) {
+                    active = this.props.activeClassName;
+                }
+            } else {
+                if (this.props.to.startsWith(location.path)) {
+                    active = this.props.activeClassName;
+                }
+            }
+            return _react2.default.createElement(
+                'li',
+                { onClick: this.closeMenu, className: active, __self: this,
+                    __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 32
+                    }
+                },
+                _react2.default.createElement(
+                    _reactRouterDom.NavLink,
+                    { exact: this.props.exact, to: this.props.to, activeClassName: this.props.activeClassName, __self: this,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 32
+                        }
+                    },
+                    this.props.children
+                )
+            );
+        }
+    }]);
+
+    return CustomNavLink;
+}(_react2.default.Component);
+
+exports.default = CustomNavLink;
 
 /***/ })
 /******/ ]);
