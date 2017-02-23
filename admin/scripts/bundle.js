@@ -9159,9 +9159,15 @@ var _Editor = __webpack_require__(78);
 
 var _Editor2 = _interopRequireDefault(_Editor);
 
+var _Constants = __webpack_require__(130);
+
 var _immutabilityHelper = __webpack_require__(43);
 
 var _immutabilityHelper2 = _interopRequireDefault(_immutabilityHelper);
+
+var _jquery = __webpack_require__(158);
+
+var _jquery2 = _interopRequireDefault(_jquery);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -9194,6 +9200,9 @@ var NewPageForm = function (_React$Component) {
         _this.handleEditorChange = _this.handleEditorChange.bind(_this);
         _this.submitHandler = _this.submitHandler.bind(_this);
         _this.previewHandler = _this.previewHandler.bind(_this);
+        _this.handleTitleChange = _this.handleTitleChange.bind(_this);
+        _this.handleSlugChange = _this.handleSlugChange.bind(_this);
+
         return _this;
     }
 
@@ -9210,7 +9219,40 @@ var NewPageForm = function (_React$Component) {
         key: 'submitHandler',
         value: function submitHandler() {
             //ajax save and call props to navigate out
-            this.props.submitCallback();
+            var payload = {
+                TITLE: this.state.editData.TITLE,
+                BODY: this.state.editData.BODY,
+                SLUG: this.state.editData.SLUG,
+                CREATEDBY: this.state.editData.CREATEDBY,
+                MODIFIEDBY: this.state.editData.MODIFIEDBY
+            };
+            var promise = _jquery2.default.ajax({
+                url: _Constants.Urls.pagesController + this.state.editData.ID,
+                method: "POST",
+                data: payload
+            });
+            promise.done(function (data) {
+                debugger;
+                //yay this works
+            });
+
+            promise.fail(function (data) {
+                debugger;
+            });
+        }
+    }, {
+        key: 'handleTitleChange',
+        value: function handleTitleChange(e) {
+            var originalData = this.state.editData;
+            var newData = (0, _immutabilityHelper2.default)(originalData, { $merge: { TITLE: e.target.value } });
+            this.setState({ editData: newData });
+        }
+    }, {
+        key: 'handleSlugChange',
+        value: function handleSlugChange(e) {
+            var originalData = this.state.editData;
+            var newData = (0, _immutabilityHelper2.default)(originalData, { $merge: { SLUG: e.target.value } });
+            this.setState({ editData: newData });
         }
     }, {
         key: 'previewHandler',
@@ -9220,17 +9262,17 @@ var NewPageForm = function (_React$Component) {
     }, {
         key: 'componentDidMount',
         value: function componentDidMount() {
-            if (this.props.url) {
+            if (this.props.params.id) {
                 var closure = this;
-                var promise = $.ajax({
-                    url: this.props.url + "/get?id=" + this.props.pageId,
+                var promise = _jquery2.default.ajax({
+                    url: _Constants.Urls.pagesController + "" + this.props.params.id,
                     method: "GET"
 
                 });
                 promise.done(function (data) {
-                    var mappedData = data[0];
+                    //var mappedData = data[0];
                     //var mappedData = [data.ID, data.TITLE, data.BODY, data.SLUG, data.CREATEDBY, data.MODIFIEDBY]
-                    closure.setState({ editData: data[0] });
+                    closure.setState({ editData: data });
                 });
                 promise.fail(function () {});
             }
@@ -9243,7 +9285,7 @@ var NewPageForm = function (_React$Component) {
                 { className: 'uk-padding uk-padding-remove-horizontal', __self: this,
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 61
+                        lineNumber: 95
                     }
                 },
                 _react2.default.createElement(
@@ -9251,7 +9293,7 @@ var NewPageForm = function (_React$Component) {
                     { className: 'uk-heading-divider', __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 62
+                            lineNumber: 96
                         }
                     },
                     'Page Editor'
@@ -9261,7 +9303,7 @@ var NewPageForm = function (_React$Component) {
                     { className: 'uk-section uk-section-muted uk-padding', __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 63
+                            lineNumber: 97
                         }
                     },
                     _react2.default.createElement(
@@ -9269,27 +9311,27 @@ var NewPageForm = function (_React$Component) {
                         { className: 'uk-text-lead', __self: this,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 64
+                                lineNumber: 98
                             }
                         },
                         'Use the section below to modify the contents of the web page'
                     ),
-                    _react2.default.createElement('input', { placeholder: 'title', value: this.state.editData.TITLE, __self: this,
+                    _react2.default.createElement('input', { placeholder: 'title', value: this.state.editData.TITLE, onChange: this.handleTitleChange, __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 65
+                            lineNumber: 99
                         }
                     }),
-                    _react2.default.createElement('input', { placeholder: 'slug', value: this.state.editData.SLUG, __self: this,
+                    _react2.default.createElement('input', { placeholder: 'slug', value: this.state.editData.SLUG, onChange: this.handleSlugChange, __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 66
+                            lineNumber: 100
                         }
                     }),
                     _react2.default.createElement(_Editor2.default, { value: this.state.editData.BODY, onEditorChange: this.handleEditorChange, __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 67
+                            lineNumber: 101
                         }
                     })
                 ),
@@ -9298,7 +9340,7 @@ var NewPageForm = function (_React$Component) {
                     { className: 'uk-margin', __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 69
+                            lineNumber: 103
                         }
                     },
                     _react2.default.createElement(
@@ -9306,7 +9348,7 @@ var NewPageForm = function (_React$Component) {
                         { onClick: this.previewHandler, className: 'uk-button uk-button-secondary', __self: this,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 70
+                                lineNumber: 104
                             }
                         },
                         'Preview'
@@ -9316,7 +9358,7 @@ var NewPageForm = function (_React$Component) {
                         { onClick: this.submitHandler, className: 'uk-button uk-button-primary', __self: this,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 71
+                                lineNumber: 105
                             }
                         },
                         'Submit'
@@ -14055,12 +14097,21 @@ var TableListing = function (_React$Component) {
     function TableListing(props) {
         _classCallCheck(this, TableListing);
 
-        return _possibleConstructorReturn(this, (TableListing.__proto__ || Object.getPrototypeOf(TableListing)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (TableListing.__proto__ || Object.getPrototypeOf(TableListing)).call(this, props));
+
+        _this.onClickItem = _this.onClickItem.bind(_this);
+
+        return _this;
     }
 
     _createClass(TableListing, [{
         key: 'componentDidMount',
         value: function componentDidMount() {}
+    }, {
+        key: 'onClickItem',
+        value: function onClickItem(item) {
+            this.props.router.push({ pathname: "/admin/webpages/edit/1" });
+        }
     }, {
         key: 'render',
         value: function render() {
@@ -14071,7 +14122,7 @@ var TableListing = function (_React$Component) {
                     { key: index, __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 17
+                            lineNumber: 21
                         }
                     },
                     head
@@ -14096,7 +14147,7 @@ var TableListing = function (_React$Component) {
                             { key: index, __self: this,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 32
+                                    lineNumber: 36
                                 }
                             },
                             dataCell
@@ -14105,11 +14156,11 @@ var TableListing = function (_React$Component) {
                     var data = _react2.default.createElement(
                         'tr',
                         { onClick: function onClick() {
-                                return closure.props.onClickItem(row[0]);
+                                return closure.onClickItem(row[0]);
                             }, key: row[0], __self: this,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 33
+                                lineNumber: 37
                             }
                         },
                         cells
@@ -14125,7 +14176,7 @@ var TableListing = function (_React$Component) {
                 { className: 'uk-table uk-table-striped', __self: this,
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 42
+                        lineNumber: 46
                     }
                 },
                 _react2.default.createElement(
@@ -14134,7 +14185,7 @@ var TableListing = function (_React$Component) {
                         __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 43
+                            lineNumber: 47
                         }
                     },
                     _react2.default.createElement(
@@ -14142,7 +14193,7 @@ var TableListing = function (_React$Component) {
                         { key: '-1', __self: this,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 44
+                                lineNumber: 48
                             }
                         },
                         header
@@ -14154,7 +14205,7 @@ var TableListing = function (_React$Component) {
                         __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 48
+                            lineNumber: 52
                         }
                     },
                     tableData
@@ -14341,7 +14392,7 @@ var TableListingContainer = function (_React$Component) {
                             lineNumber: 56
                         }
                     },
-                    _react2.default.createElement(_TableListing2.default, { headers: this.state.headers, data: this.state.data, filter: this.state.query, __self: this,
+                    _react2.default.createElement(_TableListing2.default, { router: this.props.router, headers: this.state.headers, data: this.state.data, filter: this.state.query, __self: this,
                         __source: {
                             fileName: _jsxFileName,
                             lineNumber: 57
@@ -50203,7 +50254,7 @@ var IndexComp = function (_React$Component) {
                                 lineNumber: 26
                             }
                         }),
-                        _react2.default.createElement(_reactRouter.Route, { path: '/admin/webpages/edit/:ID', componet: _Editor2.default, __self: this,
+                        _react2.default.createElement(_reactRouter.Route, { path: '/admin/webpages/edit/:id', component: _NewPageForm2.default, __self: this,
                             __source: {
                                 fileName: _jsxFileName,
                                 lineNumber: 27
@@ -53298,7 +53349,7 @@ var TableListingWebPages = function (_React$Component) {
                         lineNumber: 13
                     }
                 },
-                _react2.default.createElement(_TableListingContainer2.default, { url: _Constants.Urls.pagesController + "query", title: 'My Pages', __self: this,
+                _react2.default.createElement(_TableListingContainer2.default, { router: this.props.router, url: _Constants.Urls.pagesController + "query", title: 'My Pages', __self: this,
                     __source: {
                         fileName: _jsxFileName,
                         lineNumber: 14

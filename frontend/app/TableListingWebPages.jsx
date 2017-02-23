@@ -11,7 +11,7 @@ export default class TableListingWebPages extends React.Component{
 
     render(){   
         return(<div>
-            <TableListingContainer url ={Urls.pagesController + "query"} title="My Pages" />
+            <TableListingContainer router={this.props.router} url ={Urls.pagesController + "query"} title="My Pages" />
         </div>
         );
 

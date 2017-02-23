@@ -5,11 +5,15 @@ export default class TableListing extends React.Component{
 
         constructor(props){
             super(props);
+            this.onClickItem = this.onClickItem.bind(this);
             
     }
         componentDidMount(){
     }
-
+    onClickItem(item){
+        this.props.router.push(
+            {pathname : "/admin/webpages/edit/1"});
+    }
     
         render(){
             var closure = this;
@@ -30,7 +34,7 @@ export default class TableListing extends React.Component{
                 }
                 if(include){
                     const cells = row.map(function(dataCell, index){return(<td key={index}>{dataCell}</td>);});
-                    var data = (<tr  onClick={() => closure.props.onClickItem(row[0])} key={row[0]}>{cells}</tr>);
+                    var data = (<tr  onClick={() => closure.onClickItem(row[0])} key={row[0]}>{cells}</tr>);
                 }else{
                     const data = null;
                 }

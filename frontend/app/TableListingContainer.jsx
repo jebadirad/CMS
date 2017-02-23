@@ -54,7 +54,7 @@ export default class TableListingContainer extends React.Component{
                         </div>
                 </div>
                 <div className="uk-section uk-section-default uk-padding-remove-top">
-                    <TableListing headers={this.state.headers} data={this.state.data}  filter={this.state.query}/>
+                    <TableListing router={this.props.router} headers={this.state.headers} data={this.state.data}  filter={this.state.query}/>
                 </div>
             </div>
         );
