@@ -12,7 +12,7 @@ export default class TableListing extends React.Component{
     }
     onClickItem(item){
         this.props.router.push(
-            {pathname : "/admin/webpages/edit/1"});
+            {pathname : "/admin/webpages/edit/" + item});
     }
     
         render(){

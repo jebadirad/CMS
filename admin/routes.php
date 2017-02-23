@@ -23,8 +23,7 @@ function(){
 
 //
 
-$f3->route("GET /api/pages/@id [ajax]", "pagesController->get"
-);
+$f3->route("GET /api/pages/@id [ajax]", "pagesController->get");
 $f3->route("POST /api/pages/@id [ajax]", "pagesController->update");
 $f3->route("GET /api/pages/query", "pagesController->query");
 

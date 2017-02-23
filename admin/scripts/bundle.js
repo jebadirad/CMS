@@ -9226,19 +9226,24 @@ var NewPageForm = function (_React$Component) {
                 CREATEDBY: this.state.editData.CREATEDBY,
                 MODIFIEDBY: this.state.editData.MODIFIEDBY
             };
+            var sendingId = '';
+
+            if (this.state.editData.ID) {
+                sendingId = this.state.editData.ID;
+            } else {
+                //new page 
+                sendingId = Date.now();
+            }
             var promise = _jquery2.default.ajax({
-                url: _Constants.Urls.pagesController + this.state.editData.ID,
+                url: _Constants.Urls.pagesController + sendingId,
                 method: "POST",
                 data: payload
             });
             promise.done(function (data) {
-                debugger;
                 //yay this works
             });
 
-            promise.fail(function (data) {
-                debugger;
-            });
+            promise.fail(function (data) {});
         }
     }, {
         key: 'handleTitleChange',
@@ -9285,7 +9290,7 @@ var NewPageForm = function (_React$Component) {
                 { className: 'uk-padding uk-padding-remove-horizontal', __self: this,
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 95
+                        lineNumber: 101
                     }
                 },
                 _react2.default.createElement(
@@ -9293,7 +9298,7 @@ var NewPageForm = function (_React$Component) {
                     { className: 'uk-heading-divider', __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 96
+                            lineNumber: 102
                         }
                     },
                     'Page Editor'
@@ -9303,7 +9308,7 @@ var NewPageForm = function (_React$Component) {
                     { className: 'uk-section uk-section-muted uk-padding', __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 97
+                            lineNumber: 103
                         }
                     },
                     _react2.default.createElement(
@@ -9311,7 +9316,7 @@ var NewPageForm = function (_React$Component) {
                         { className: 'uk-text-lead', __self: this,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 98
+                                lineNumber: 104
                             }
                         },
                         'Use the section below to modify the contents of the web page'
@@ -9319,19 +9324,19 @@ var NewPageForm = function (_React$Component) {
                     _react2.default.createElement('input', { placeholder: 'title', value: this.state.editData.TITLE, onChange: this.handleTitleChange, __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 99
+                            lineNumber: 105
                         }
                     }),
                     _react2.default.createElement('input', { placeholder: 'slug', value: this.state.editData.SLUG, onChange: this.handleSlugChange, __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 100
+                            lineNumber: 106
                         }
                     }),
                     _react2.default.createElement(_Editor2.default, { value: this.state.editData.BODY, onEditorChange: this.handleEditorChange, __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 101
+                            lineNumber: 107
                         }
                     })
                 ),
@@ -9340,7 +9345,7 @@ var NewPageForm = function (_React$Component) {
                     { className: 'uk-margin', __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 103
+                            lineNumber: 109
                         }
                     },
                     _react2.default.createElement(
@@ -9348,7 +9353,7 @@ var NewPageForm = function (_React$Component) {
                         { onClick: this.previewHandler, className: 'uk-button uk-button-secondary', __self: this,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 104
+                                lineNumber: 110
                             }
                         },
                         'Preview'
@@ -9358,7 +9363,7 @@ var NewPageForm = function (_React$Component) {
                         { onClick: this.submitHandler, className: 'uk-button uk-button-primary', __self: this,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 105
+                                lineNumber: 111
                             }
                         },
                         'Submit'
@@ -14033,16 +14038,6 @@ var NavMenu = function (_React$Component) {
                                         }
                                     },
                                     'Web Pages'
-                                ),
-                                _react2.default.createElement(
-                                    _CustomNavLink2.default,
-                                    { menuToClose: navId, activeClassName: 'uk-active', to: _Constants.NavUrls.editor, exact: true, __self: this,
-                                        __source: {
-                                            fileName: _jsxFileName,
-                                            lineNumber: 48
-                                        }
-                                    },
-                                    'Editor'
                                 )
                             )
                         )
@@ -14110,7 +14105,7 @@ var TableListing = function (_React$Component) {
     }, {
         key: 'onClickItem',
         value: function onClickItem(item) {
-            this.props.router.push({ pathname: "/admin/webpages/edit/1" });
+            this.props.router.push({ pathname: "/admin/webpages/edit/" + item });
         }
     }, {
         key: 'render',
@@ -14270,10 +14265,16 @@ var TableListingContainer = function (_React$Component) {
         };
 
         _this.onFilterChange = _this.onFilterChange.bind(_this);
+        _this.handleNewPageClick = _this.handleNewPageClick.bind(_this);
         return _this;
     }
 
     _createClass(TableListingContainer, [{
+        key: 'handleNewPageClick',
+        value: function handleNewPageClick() {
+            this.props.router.push("/admin/webpages/new");
+        }
+    }, {
         key: 'componentDidMount',
         value: function componentDidMount() {
             this.makeGrid.setAttribute("uk-grid", "");
@@ -14308,7 +14309,7 @@ var TableListingContainer = function (_React$Component) {
                 { className: 'uk-padding uk-padding-remove-horizontal', __self: this,
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 42
+                        lineNumber: 46
                     }
                 },
                 _react2.default.createElement(
@@ -14316,7 +14317,7 @@ var TableListingContainer = function (_React$Component) {
                     { className: 'uk-heading-divider', __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 43
+                            lineNumber: 47
                         }
                     },
                     this.props.title
@@ -14326,7 +14327,7 @@ var TableListingContainer = function (_React$Component) {
                     { className: 'uk-section uk-section-muted uk-padding', __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 44
+                            lineNumber: 48
                         }
                     },
                     _react2.default.createElement(
@@ -14336,7 +14337,7 @@ var TableListingContainer = function (_React$Component) {
                             }, __self: this,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 45
+                                lineNumber: 49
                             }
                         },
                         _react2.default.createElement(
@@ -14344,7 +14345,7 @@ var TableListingContainer = function (_React$Component) {
                             { className: 'uk-width-3-4', __self: this,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 46
+                                    lineNumber: 50
                                 }
                             },
                             _react2.default.createElement(
@@ -14352,13 +14353,13 @@ var TableListingContainer = function (_React$Component) {
                                 { className: 'uk-form-controls', __self: this,
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 47
+                                        lineNumber: 51
                                     }
                                 },
                                 _react2.default.createElement('input', { className: 'uk-input uk-form-width-large', type: 'text', placeholder: 'Filter', onChange: this.onFilterChange, __self: this,
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 48
+                                        lineNumber: 52
                                     }
                                 })
                             )
@@ -14368,15 +14369,15 @@ var TableListingContainer = function (_React$Component) {
                             { className: 'uk-form-controls uk-width-1-4', __self: this,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 51
+                                    lineNumber: 55
                                 }
                             },
                             _react2.default.createElement(
                                 'button',
-                                { className: 'uk-button uk-button-primary', __self: this,
+                                { className: 'uk-button uk-button-primary', onClick: this.handleNewPageClick, __self: this,
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 52
+                                        lineNumber: 56
                                     }
                                 },
                                 'New Item'
@@ -14389,13 +14390,13 @@ var TableListingContainer = function (_React$Component) {
                     { className: 'uk-section uk-section-default uk-padding-remove-top', __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 56
+                            lineNumber: 60
                         }
                     },
                     _react2.default.createElement(_TableListing2.default, { router: this.props.router, headers: this.state.headers, data: this.state.data, filter: this.state.query, __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 57
+                            lineNumber: 61
                         }
                     })
                 )
@@ -50260,13 +50261,7 @@ var IndexComp = function (_React$Component) {
                                 lineNumber: 27
                             }
                         })
-                    ),
-                    _react2.default.createElement(_reactRouter.Route, { path: '/admin/editor', component: _Editor2.default, __self: this,
-                        __source: {
-                            fileName: _jsxFileName,
-                            lineNumber: 29
-                        }
-                    })
+                    )
                 )
             );
         }
@@ -50282,7 +50277,7 @@ _reactDom2.default.render(_react2.default.createElement(IndexComp, {
     __self: undefined,
     __source: {
         fileName: _jsxFileName,
-        lineNumber: 40
+        lineNumber: 39
     }
 }), document.getElementById('main'));
 

@@ -13,7 +13,11 @@ export default class TableListingContainer extends React.Component{
             };
      
         this.onFilterChange = this.onFilterChange.bind(this);
+        this.handleNewPageClick = this.handleNewPageClick.bind(this);
 }
+    handleNewPageClick(){
+        this.props.router.push("/admin/webpages/new");
+    }
     componentDidMount(){
     this.makeGrid.setAttribute("uk-grid" , "");
     var closure = this;
@@ -49,7 +53,7 @@ export default class TableListingContainer extends React.Component{
                                 </div>
                             </div>
                             <div className="uk-form-controls uk-width-1-4">
-                                <button className="uk-button uk-button-primary">New Item</button>
+                                <button className="uk-button uk-button-primary" onClick={this.handleNewPageClick}>New Item</button>
                             </div>
                         </div>
                 </div>

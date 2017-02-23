@@ -44,18 +44,24 @@ export default class NewPageForm extends React.Component {
             CREATEDBY : this.state.editData.CREATEDBY,
             MODIFIEDBY : this.state.editData.MODIFIEDBY
         };
-        var promise = $.ajax({
-            url : Urls.pagesController + this.state.editData.ID,
-            method : "POST",
-            data: payload
-        });
+        var sendingId = '';
+
+        if(this.state.editData.ID){
+           sendingId = this.state.editData.ID;
+        }else{
+            //new page 
+           sendingId = Date.now();
+        }
+         var promise = $.ajax({
+                url : Urls.pagesController + sendingId,
+                method : "POST",
+                data: payload
+            });
         promise.done(function(data){
-            debugger;
             //yay this works
             });
 
         promise.fail(function(data){
-            debugger;
         });
        
     }

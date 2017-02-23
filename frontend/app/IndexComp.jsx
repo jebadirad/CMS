@@ -26,7 +26,6 @@ export default class IndexComp extends React.Component{
                             <Route path="/admin/webpages/new" component={NewPageForm} />
                             <Route path="/admin/webpages/edit/:id" component={NewPageForm} />
                         </Route>
-                        <Route path="/admin/editor" component={Editor} />
                     </Route>
                    
 
