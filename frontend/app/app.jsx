@@ -11,6 +11,10 @@ export default class AdminPanel extends React.Component{
 
         constructor(props){
             super(props);
+            this.state = {
+                notificationMessage :""
+
+            }
           
     }
         
@@ -38,11 +42,11 @@ export default class AdminPanel extends React.Component{
 
             return(
                 <div>
-                <NavMenu />
-                <Container>
-                       {this.props.children}
-                       </Container>
-                       </div>
+                    <NavMenu />
+                    <Container>
+                        {this.props.children}
+                    </Container>
+                </div>
             );
         }
 }

@@ -14,7 +14,6 @@ export default class TableListing extends React.Component{
         this.props.router.push(
             {pathname : "/admin/webpages/edit/" + item});
     }
-    
         render(){
             var closure = this;
             const header = this.props.headers.map(function(head, index){
@@ -23,11 +22,9 @@ export default class TableListing extends React.Component{
             const tableData = this.props.data.map(function(row){
                 var include = false;
                 if(closure.props.filter){
-                    for(var i = 0; i < row.length; i++){
-                        if(row[i].indexOf(closure.props.filter) > -1){
-                            include = true;
-                            break;
-                        }
+                    //check title and check slug. should make this an obj later.
+                    if(row[1].indexOf(closure.props.filter) > -1 || row[2].indexOf(closure.props.filter) > -1){
+                        include = true;
                     }
                 }else{
                    include = true; 

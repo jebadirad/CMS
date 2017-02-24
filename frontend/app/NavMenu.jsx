@@ -45,6 +45,7 @@ export default class NavMenu extends React.Component{
                                 <ul className='uk-nav uk-nav-default'>
                                         <CustomNavLink menuToClose={navId} activeClassName="uk-active" to={NavUrls.home} exact={true} >Home</CustomNavLink>
                                         <CustomNavLink menuToClose={navId} activeClassName="uk-active" to={NavUrls.webpages} exact={true}>Web Pages</CustomNavLink>
+                                        <CustomNavLink menuToClose={navId} activeClassName="uk-active" to={NavUrls.webpages} exact={true}>User Management</CustomNavLink>
                                 </ul>
                             </div>
                         </div>

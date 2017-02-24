@@ -49,7 +49,7 @@ class pagesController extends baseController{
             $title = $_POST['TITLE'];
             $body = $_POST['BODY'];
             $slug =  $_POST['SLUG'];
-           // if(validatePage($title, $body, $slug, 0)){
+           if($this->validatePage($title, $body, $slug, 0)){
                 $pages = new DB\SQL\Mapper($f3->get("DB"),"sitepages");
 
                 $pages->load(array("ID=?", $params['id']));
@@ -63,11 +63,11 @@ class pagesController extends baseController{
                 $pages->reset();
                 $response["status"] = "ok";
                 echo json_encode($response);
-          /*  }
+           }
             else{
                  http_response_code(400);
             }
-        */
+        
         }
     }
     function validatePage($title, $body,$slug, $modifiedby){

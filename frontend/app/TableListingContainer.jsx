@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TableListing from "./TableListing.jsx";
+import Toast from './Toast.jsx';
 export default class TableListingContainer extends React.Component{
     constructor(props){
         super(props);
@@ -9,7 +10,8 @@ export default class TableListingContainer extends React.Component{
                 editId : 0,
                 headers : ["ID", "Title", "Slug", "Created By", "Modified By"],
                 data : [],
-                query: ""
+                query: "",
+                
             };
      
         this.onFilterChange = this.onFilterChange.bind(this);
@@ -17,7 +19,11 @@ export default class TableListingContainer extends React.Component{
 }
     handleNewPageClick(){
         this.props.router.push("/admin/webpages/new");
+        
     }
+    
+
+
     componentDidMount(){
     this.makeGrid.setAttribute("uk-grid" , "");
     var closure = this;
@@ -41,8 +47,8 @@ export default class TableListingContainer extends React.Component{
         this.setState({query : event.target.value});
     }
     render(){
-
         return(
+        <div>
             <div className="uk-padding uk-padding-remove-horizontal">
                 <h2 className="uk-heading-divider">{this.props.title}</h2>
                 <div className="uk-section uk-section-muted uk-padding">
@@ -58,9 +64,11 @@ export default class TableListingContainer extends React.Component{
                         </div>
                 </div>
                 <div className="uk-section uk-section-default uk-padding-remove-top">
-                    <TableListing router={this.props.router} headers={this.state.headers} data={this.state.data}  filter={this.state.query}/>
+                    <TableListing  router={this.props.router} headers={this.state.headers} data={this.state.data}  filter={this.state.query}/>
                 </div>
+            
             </div>
+        </div>
         );
 
 

@@ -24,7 +24,7 @@ export default class NewPageForm extends React.Component {
         this.previewHandler = this.previewHandler.bind(this);
         this.handleTitleChange = this.handleTitleChange.bind(this);
         this.handleSlugChange = this.handleSlugChange.bind(this);
-
+        this.returnToTable = this.returnToTable.bind(this);
     }
 
 
@@ -34,6 +34,9 @@ export default class NewPageForm extends React.Component {
         const newData = update(old, { BODY: { $set: text } });
         //should create a does component update;
         this.setState({ editData: newData });
+    }
+    returnToTable(){
+        this.props.router.push("/admin/webpages/");
     }
     submitHandler() {
         //ajax save and call props to navigate out
@@ -52,17 +55,25 @@ export default class NewPageForm extends React.Component {
             //new page 
            sendingId = Date.now();
         }
+
          var promise = $.ajax({
                 url : Urls.pagesController + sendingId,
                 method : "POST",
                 data: payload
             });
+        var closure = this;
         promise.done(function(data){
             //yay this works
+            //should do a toast.
+            closure.props.notify({message : "Saved Successfully!", status : "success"});
+            closure.returnToTable();
             });
 
         promise.fail(function(data){
-        });
+            debugger;
+            closure.props.notify({message : "Failed", status : "danger"});
+    });
+
        
     }
     handleTitleChange(e){
@@ -107,8 +118,15 @@ export default class NewPageForm extends React.Component {
                     <Editor value={this.state.editData.BODY} onEditorChange={this.handleEditorChange} />
                 </div>
                 <div className="uk-margin">
-                    <button onClick={this.previewHandler} className="uk-button uk-button-secondary">Preview</button>
-                    <button onClick={this.submitHandler} className="uk-button uk-button-primary">Submit</button>
+                    <div className="uk-flex uk-flex-between">
+                        <div>
+                            <button onClick={this.returnToTable} className="uk-button uk-button-danger">Cancel</button>
+                        </div>
+                        <div>
+                            <button onClick={this.previewHandler} className="uk-button uk-button-secondary">Preview</button>
+                            <button onClick={this.submitHandler} className="uk-button uk-button-primary">Submit</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
