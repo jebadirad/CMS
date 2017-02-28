@@ -8,16 +8,13 @@ require("style-loader!css-loader!..\\node_modules\\uikit\\dist\\css\\uikit.min.c
 require("script-loader!..\\node_modules\\jquery\\dist\\jquery.js");
 require("script-loader!..\\node_modules\\uikit\\dist\\js\\uikit.js");
 export default class AdminPanel extends React.Component{
-
         constructor(props){
             super(props);
             this.state = {
                 notificationMessage :""
 
             }
-          
     }
-        
         componentDidMount(){
         }
     

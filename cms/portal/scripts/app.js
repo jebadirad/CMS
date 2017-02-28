@@ -21033,7 +21033,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 var Urls = exports.Urls = {
     pagesController: "/api/pages/",
-    usersController: "/api/user/"
+    usersController: "/api/users/"
 };
 var base = "/admin";
 var NavUrls = exports.NavUrls = {
@@ -36851,7 +36851,6 @@ var AdminPanel = function (_React$Component) {
             notificationMessage: ""
 
         };
-
         return _this;
     }
 
@@ -36884,14 +36883,14 @@ var AdminPanel = function (_React$Component) {
                     __self: this,
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 44
+                        lineNumber: 41
                     }
                 },
                 _react2.default.createElement(_NavMenu2.default, {
                     __self: this,
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 45
+                        lineNumber: 42
                     }
                 }),
                 _react2.default.createElement(
@@ -36900,7 +36899,7 @@ var AdminPanel = function (_React$Component) {
                         __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 46
+                            lineNumber: 43
                         }
                     },
                     this.props.children
@@ -53597,7 +53596,7 @@ _reactDom2.default.render(_react2.default.createElement(IndexComp, {
     __self: undefined,
     __source: {
         fileName: _jsxFileName,
-        lineNumber: 42
+        lineNumber: 41
     }
 }), document.getElementById('main'));
 

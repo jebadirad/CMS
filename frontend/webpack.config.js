@@ -1,6 +1,7 @@
 var webpack = require('webpack');
 var PATHS ={
-    "images" : "./assets/images"
+    "images" : "./assets/images",
+    "production" : "../cms/app/scripts",
 };
 
 
@@ -11,7 +12,7 @@ module.exports = {
        login : "./login/Login.jsx"
     },
     output: {
-        path: "../admin/scripts/",
+        path: PATHS.production,
         filename: "[name].js"
     },
     module: {

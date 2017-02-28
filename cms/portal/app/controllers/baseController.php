@@ -13,7 +13,7 @@ class baseController{
         if(!$auther->checkLogin()){
             unset($_SESSION['user']);
             session_destroy();
-            $f3->reroute("/login", false);
+            header("Location: /login");
         }
         else{
             return true;

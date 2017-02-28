@@ -7,7 +7,6 @@ class usersController extends baseController{
     //used to get user profiles / data for whatever we need.
     public function get($f3, $params){
         $users = new DB\SQL\Mapper($f3->get("DB"), "users");
-        
         $users->load(array("ID = ? OR username = ?", $params['id'], $params['id']));
         //need to create user DTO 
         echo json_encode($users->cast());
@@ -26,7 +25,9 @@ class usersController extends baseController{
     public function authme($f3, $params){
         $auther = new AuthController;
         if($auther->checkLogin()){
-            $f3->reroute("/admin", false);
+            echo json_encode("true");
+        }else{
+            echo json_encode('false');
         }
     }
 
@@ -45,7 +46,10 @@ class usersController extends baseController{
         };
        
     }
-
+    public function destroy($f3, $params){
+        session_start();
+        session_destroy();
+    }
     //login func
     public function login($f3, $params){
         if(isset($_POST['username']) && isset($_POST['password'])){
@@ -56,10 +60,11 @@ class usersController extends baseController{
             if($auther->login($_POST['password'], $expandeduser['password'])){
                 session_start();
                 $_SESSION['user'] = $_POST['username'];
-                $f3->reroute("/admin" , false);
+                $f3->reroute("/admin", false);
             }
         }
-         $f3->reroute("/login", false);
+        $f3->reroute("/login", false);
+        // header("Location: /login");
         
     }
     //password reset func. will need to email
