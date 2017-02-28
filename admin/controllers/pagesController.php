@@ -5,6 +5,7 @@ class pagesController extends baseController{
    
  
     public function get($f3,  $params){
+        
         $pages = new DB\SQL\Mapper($f3->get("DB"), "sitepages");
         $pages->load(array("ID = ?", $params["id"]));
 

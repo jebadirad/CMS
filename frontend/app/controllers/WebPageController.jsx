@@ -19,6 +19,7 @@ export default class WebPageController extends React.Component{
            }
            this.pushNotification = this.pushNotification.bind(this);
         }
+        
         pushNotification(message){
             this.setState({message : update(this.state.message, {$merge : message})});
         }

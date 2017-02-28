@@ -1,5 +1,6 @@
 export const Urls = {
-    pagesController : "/api/pages/"
+    pagesController : "/api/pages/",
+    usersController : "/api/user/",
 }
 const base = "/admin";
 export const NavUrls ={

@@ -2,10 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import CustomNavLink from './CustomNavLink.jsx';
 import {NavUrls} from './Constants.jsx';
+import $ from 'jquery';
 export default class NavMenu extends React.Component{
 
         constructor(props){
             super(props);
+            this.state = {
+                username : ""
+            };
             this.changeMenu = this.changeMenu.bind(this);
     }
 
@@ -13,6 +17,17 @@ export default class NavMenu extends React.Component{
             this.props.onViewChange(item);
         }
         componentDidMount(){
+            var promise = $.ajax({
+                url: "",
+                method :"GET"
+            });
+            var closure = this;
+            promise.done(function(data){
+                closure.setState({username : data});
+            });
+            promise.fail(function(data){
+
+            })
             this.menuContainer.setAttribute("uk-navbar" , "");
             this.toggleIcon.setAttribute("uk-navbar-toggle-icon", '');
             this.toggleMenu.setAttribute("uk-toggle", "target: #offNavMenu");
@@ -37,6 +52,9 @@ export default class NavMenu extends React.Component{
                             <a onClick={this.preventNav} className="uk-navbar-item uk-logo uk-navbar-toggle" ref={(div) => {this.toggleLogo = div;}}>
                                 Logo
                            </a>
+                        </div>
+                        <div className="uk-navbar-right">
+                            <span>{this.state.username}</span>
                         </div>
                     </div>
                     <div id={navId} ref={(div) => {this.offCanvas = div;}}>

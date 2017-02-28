@@ -6,10 +6,13 @@ var PATHS ={
 
 
 module.exports = {
-    entry: "./app/IndexComp.jsx",
+    entry: {
+       app : "./app/IndexComp.jsx",
+       login : "./login/Login.jsx"
+    },
     output: {
         path: "../admin/scripts/",
-        filename: "bundle.js"
+        filename: "[name].js"
     },
     module: {
         noParse : /node_modules\/quill\/dist/,
