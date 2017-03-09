@@ -17,8 +17,8 @@ export default class NavMenu extends React.Component{
             this.props.onViewChange(item);
         }
         componentDidMount(){
-            var promise = $.ajax({
-                url: "",
+           /* var promise = $.ajax({
+                url: "fdsafdsa",
                 method :"GET"
             });
             var closure = this;
@@ -27,7 +27,8 @@ export default class NavMenu extends React.Component{
             });
             promise.fail(function(data){
 
-            })
+            });
+            */
             this.menuContainer.setAttribute("uk-navbar" , "");
             this.toggleIcon.setAttribute("uk-navbar-toggle-icon", '');
             this.toggleMenu.setAttribute("uk-toggle", "target: #offNavMenu");

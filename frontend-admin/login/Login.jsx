@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Urls} from '../app/Constants.jsx';
+import {Urls, NavUrls} from '../app/Constants.jsx';
 import {Container} from "../app/Container.jsx";
 require("script-loader!..\\node_modules\\jquery\\dist\\jquery.js");
 require("style-loader!css-loader!..\\node_modules\\uikit\\dist\\css\\uikit.min.css");
@@ -32,7 +32,7 @@ export default class Login extends React.Component{
     render(){
         return(<div>
             <Container>
-                <form className="uk-form-stacked" method="POST">
+                <form className="uk-form-stacked" method="POST" action={Urls.base  + "login"}>
                     <fieldset className="uk-fieldset">
                         <legend className="uk-legend">
                             Login

@@ -1,7 +1,7 @@
 var webpack = require('webpack');
 var PATHS ={
     "images" : "./assets/images",
-    "production" : "../cms/app/scripts",
+    "production" : "../cms/portal/scripts",
 };
 
 

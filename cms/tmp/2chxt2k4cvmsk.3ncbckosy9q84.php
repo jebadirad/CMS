@@ -3,7 +3,7 @@
 </head>
 <body>
     <div id='main'></div>
-    <script src="<?php echo $BASE; ?>/portal/scripts/app.js"></script>
+    <script src="<?php echo $BASE; ?>/portal/scripts/admin.js"></script>
 </body>
 
 </html>

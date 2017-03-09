@@ -2,8 +2,8 @@
 
 class AuthController{
     //DO NOT REDIRECT HERE. REDIRECT IN CONTROLLERS ONLY.
-    public function login($password, $hash){
-        return password_verify($password, $hash);
+    public function login($password, $hashedPassword){
+        return password_verify($password, $hashedPassword);
     }
 
     public function checkLogin(){

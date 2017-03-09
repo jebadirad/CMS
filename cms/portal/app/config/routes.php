@@ -11,6 +11,9 @@ $f3->route("GET /admin", function($f3){
 $f3->route("GET /", function($f3){
     echo \Template::instance()->render("main.html");
 });
+$f3->route("GET /*", function($f3){
+    echo \Template::instance()->render("main.html");
+});
 /*
 $f3->route('GET /',
     function($f3){
@@ -35,14 +38,12 @@ $f3->route('GET /',
 );*/
 //login
 $f3->route("GET /login", function(){
-    echo "<html>
-            <head>
-            </head>
-            <body>
-            <div id='main'></div>
-            <script src='/scripts/login.js'></script>
-            </body>
-            </html>";
+    $auther = new AuthController;
+     if($auther->checkLogin()){
+            echo \Template::instance()->render("admin.html");
+        }else{
+            echo \Template::instance()->render("login.html");
+        }
 });
 $f3->route("POST /login", "usersController->login");
 $f3->route("GET /destroy", "usersController->destroy");

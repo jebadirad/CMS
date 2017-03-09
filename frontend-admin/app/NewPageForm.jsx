@@ -1,6 +1,6 @@
 import React from 'react';
 import Editor from "./Editor.jsx";
-import {Urls} from './Constants.jsx';
+import {Urls, NavUrls} from './Constants.jsx';
 import update from 'immutability-helper';
 import $ from 'jquery';
 export default class NewPageForm extends React.Component {
@@ -36,7 +36,7 @@ export default class NewPageForm extends React.Component {
         this.setState({ editData: newData });
     }
     returnToTable(){
-        this.props.router.push("/admin/webpages/");
+        this.props.router.push(NavUrls.webpages);
     }
     submitHandler() {
         //ajax save and call props to navigate out

@@ -52,7 +52,10 @@ class usersController extends baseController{
     }
     //login func
     public function login($f3, $params){
-        if(isset($_POST['username']) && isset($_POST['password'])){
+        session_start();
+                $_SESSION['user'] = $_POST['username'];
+                $f3->reroute("/admin", false);
+        /*if(isset($_POST['username']) && isset($_POST['password'])){
             $users = new DB\SQL\Mapper($f3->get("DB"), "users");
             $users->load(array("username = ?", $_POST['username']));
             $expandeduser = $users->cast();
@@ -64,6 +67,7 @@ class usersController extends baseController{
             }
         }
         $f3->reroute("/login", false);
+        */
         // header("Location: /login");
         
     }

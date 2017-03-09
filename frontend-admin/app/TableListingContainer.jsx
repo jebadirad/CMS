@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TableListing from "./TableListing.jsx";
 import Toast from './Toast.jsx';
+import {NavUrls} from './Constants.jsx';
 export default class TableListingContainer extends React.Component{
     constructor(props){
         super(props);
@@ -18,7 +19,7 @@ export default class TableListingContainer extends React.Component{
         this.handleNewPageClick = this.handleNewPageClick.bind(this);
 }
     handleNewPageClick(){
-        this.props.router.push("/admin/webpages/new");
+        this.props.router.push(NavUrls.webpages +"/new");
         
     }
     

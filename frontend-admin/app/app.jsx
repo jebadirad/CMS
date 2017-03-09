@@ -1,9 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import {Container} from "./Container.jsx";
-import update from "immutability-helper";
 import NavMenu from './NavMenu.jsx';
-import {Link} from 'react-router';
 require("style-loader!css-loader!..\\node_modules\\uikit\\dist\\css\\uikit.min.css");
 require("script-loader!..\\node_modules\\jquery\\dist\\jquery.js");
 require("script-loader!..\\node_modules\\uikit\\dist\\js\\uikit.js");

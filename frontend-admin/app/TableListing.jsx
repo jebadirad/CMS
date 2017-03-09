@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
+import {NavUrls} from './Constants.jsx';
 export default class TableListing extends React.Component{
 
         constructor(props){
@@ -12,7 +13,7 @@ export default class TableListing extends React.Component{
     }
     onClickItem(item){
         this.props.router.push(
-            {pathname : "/admin/webpages/edit/" + item});
+            {pathname : NavUrls.editor + '/' + item});
     }
         render(){
             var closure = this;

@@ -1,11 +1,14 @@
+const siteName = "/cms/";
 export const Urls = {
-    pagesController : "/api/pages/",
-    usersController : "/api/users/",
+    pagesController : siteName + "api/pages/",
+    usersController : siteName + "api/users/",
+    base : siteName
 }
-const base = "/admin";
+const base = siteName + "admin";
 export const NavUrls ={
    
-    home : base + "/",
+    home : base ,
     webpages : base + "/webpages",
-    editor : base + "/editor"
+    editor : base + "/webpages/edit",
+    users : base + "/users"
 }
