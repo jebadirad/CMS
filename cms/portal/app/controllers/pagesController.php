@@ -5,10 +5,8 @@ class pagesController extends baseController{
    
  
     public function get($f3,  $params){
-        
         $pages = new DB\SQL\Mapper($f3->get("DB"), "sitepages");
         $pages->load(array("ID = ?", $params["id"]));
-
         echo json_encode($pages->cast());
     }
 
@@ -27,19 +25,29 @@ class pagesController extends baseController{
         
     }
     //will need to do some auth here and then insert 
-    
+    /*
     public function add($f3, $params){
-        $pages = new DB\SQL\Mapper($f3->get("DB"), "sitepages");
-        $pages->TITLE= 'testtitle';
-        $pages->BODY = "Body";
-        $pages->SLUG="testtitle";
-        $pages->CREATEDBY = 0;
-        $pages->MODIFIEDBY = 0;
-        $pages->save();
-        $pages->reset();
-
-        echo json_encode($arr);
-    }
+        if($this->stillLoggedIn()){
+            $title = $_POST['TITLE'];
+            $body = $_POST['BODY'];
+            $slug = $_POST['SLUG'];
+            if($this->validatePage($title, $body, $slug, 0)){
+                $pages = new DB\SQL\Mapper($f3->get("DB"), "sitepages");
+                $pages->TITLE= 'testtitle';
+                $pages->BODY = "Body";
+                $pages->SLUG="testtitle";
+                $pages->CREATEDBY = 0;
+                $pages->MODIFIEDBY = 0;
+                $pages->save();
+                $pages->reset();
+                $response["status"] = "ok";
+                echo json_encode($response);
+            }
+            else{
+                http_response_code(400);
+            }
+        }
+    }*/
 
 
     public function update($f3, $params){
@@ -47,27 +55,30 @@ class pagesController extends baseController{
             http_response_code(400);
         }else{
             //need to do some validation here but
-            $title = $_POST['TITLE'];
-            $body = $_POST['BODY'];
-            $slug =  $_POST['SLUG'];
-           if($this->validatePage($title, $body, $slug, 0)){
-                $pages = new DB\SQL\Mapper($f3->get("DB"),"sitepages");
+             if($this->stillLoggedIn()){
+                    $title = $_POST['TITLE'];
+                    $body = $_POST['BODY'];
+                    $slug =  $_POST['SLUG'];
+                if($this->validatePage($title, $body, $slug, 0)){
+                        $pages = new DB\SQL\Mapper($f3->get("DB"),"sitepages");
 
-                $pages->load(array("ID=?", $params['id']));
-                $pages->TITLE= $_POST['TITLE'];
-                $pages->BODY = $_POST['BODY'];
-                $pages->SLUG= $_POST['SLUG'];
-                //do this later
-                $pages->CREATEDBY = 0;
-                $pages->MODIFIEDBY = 0;
-                $pages->save();
-                $pages->reset();
-                $response["status"] = "ok";
-                echo json_encode($response);
-           }
-            else{
-                 http_response_code(400);
-            }
+                        $pages->load(array("ID=?", $params['id']));
+                        $pages->TITLE= $_POST['TITLE'];
+                        $pages->BODY = $_POST['BODY'];
+                        $pages->SLUG= $_POST['SLUG'];
+                        //do this later
+                        $pages->CREATEDBY = 0;
+                        $pages->MODIFIEDBY = 0;
+                        $pages->save();
+                        $pages->reset();
+                        $response["status"] = "ok";
+                        echo json_encode($response);
+                }
+                    
+                    else{
+                        http_response_code(400);
+                    }
+             }
         
         }
     }

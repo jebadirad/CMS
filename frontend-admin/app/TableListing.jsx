@@ -13,7 +13,7 @@ export default class TableListing extends React.Component{
     }
     onClickItem(item){
         this.props.router.push(
-            {pathname : NavUrls.editor + '/' + item});
+            {pathname : this.props.url + '/edit/' + item});
     }
         render(){
             var closure = this;

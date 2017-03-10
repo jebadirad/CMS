@@ -15,8 +15,10 @@ export default class NewPageForm extends React.Component {
                 BODY: "",
                 SLUG: "",
                 CREATEDBY: "",
-                MODIFIEDBY: ""
-            }
+                MODIFIEDBY: "",
+                CATID : ""
+            },
+            options : []
 
         }
         this.handleEditorChange = this.handleEditorChange.bind(this);
@@ -25,6 +27,7 @@ export default class NewPageForm extends React.Component {
         this.handleTitleChange = this.handleTitleChange.bind(this);
         this.handleSlugChange = this.handleSlugChange.bind(this);
         this.returnToTable = this.returnToTable.bind(this);
+        this.getCategories = this.getCategories.bind(this);
     }
 
 
@@ -45,7 +48,8 @@ export default class NewPageForm extends React.Component {
             BODY : this.state.editData.BODY,
             SLUG : this.state.editData.SLUG,
             CREATEDBY : this.state.editData.CREATEDBY,
-            MODIFIEDBY : this.state.editData.MODIFIEDBY
+            MODIFIEDBY : this.state.editData.MODIFIEDBY,
+            CATID : this.state.editData.CATID
         };
         var sendingId = '';
 
@@ -106,15 +110,42 @@ export default class NewPageForm extends React.Component {
 
             });
         }
+        this.getCategories();
+    }
+    shouldComponentUpdate(newprops, newstate){
+        return newstate !== this.state;
+    }
+    getCategories(){
+        var closure = this;
+        var promise= $.ajax({
+            url : Urls.catController + "query",
+            method : "GET",
+        });
+        promise.done(function(data){
+            const oldOptions = closure.state;
+            const newOptions = update(oldOptions , {$merge : {
+                options: data
+            }});
+            closure.setState(newOptions);
+        });
+        promise.fail(function(){
+
+        });
     }
     render() {
+        const Options = this.state.options.map(function(option){
+            return(<option value={option.ID}>{option.HEADING}</option>)
+        });
         return (
             <div className="uk-padding uk-padding-remove-horizontal">
                 <h2 className="uk-heading-divider">Page Editor</h2>
                 <div className='uk-section uk-section-muted uk-padding'>
                     <p className="uk-text-lead">Use the section below to modify the contents of the web page</p>
-                    <input placeholder="title" value={this.state.editData.TITLE} onChange={this.handleTitleChange}></input>
-                    <input placeholder="slug" value={this.state.editData.SLUG} onChange={this.handleSlugChange}></input>
+                    <input className="uk-input" placeholder="title" value={this.state.editData.TITLE} onChange={this.handleTitleChange}></input>
+                    <input className="uk-input" placeholder="slug" value={this.state.editData.SLUG} onChange={this.handleSlugChange}></input>
+                    <select className="uk-select">
+                        {Options}
+                    </select>
                     <Editor value={this.state.editData.BODY} onEditorChange={this.handleEditorChange} />
                 </div>
                 <div className="uk-margin">

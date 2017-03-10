@@ -1,40 +1,37 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import TableListing from "./TableListing.jsx";
-import Toast from './Toast.jsx';
-import {NavUrls} from './Constants.jsx';
+import TableListing from './TableListing.jsx';
+import $ from 'jquery';
+import update from 'immutability-helper';
 export default class TableListingContainer extends React.Component{
     constructor(props){
         super(props);
-         this.state = {
-                
-                editId : 0,
-                headers : ["ID", "Title", "Slug", "Created By", "Modified By"],
-                data : [],
-                query: "",
-                
-            };
-     
+        this.state={
+            editID : 0,
+            
+            data : [],
+            query : ""
+        };
         this.onFilterChange = this.onFilterChange.bind(this);
-        this.handleNewPageClick = this.handleNewPageClick.bind(this);
-}
-    handleNewPageClick(){
-        this.props.router.push(NavUrls.webpages +"/new");
-        
+        this.handleNewClick = this.handleNewClick.bind(this);
+        this.fetchData = this.fetchData.bind(this);
     }
-    
 
-
-    componentDidMount(){
-    this.makeGrid.setAttribute("uk-grid" , "");
-    var closure = this;
-            var promise = $.ajax({
-                url: this.props.url,
+    handleNewClick(){
+        this.props.router.push(this.props.url + "/new");
+    }
+    fetchData(api){
+        var closure = this;
+        var promise = $.ajax({
+                url: api + "query",
                 method: "GET",
             });
             promise.done(function(data){
                 var mappedData = data.map(function(page){
-                    return [page.ID, page.TITLE, page.SLUG, page.CREATEDBY, page.MODIFIEDBY];
+                    var itemArr = [];
+                    for(var i =0; i < closure.props.headers.length; i++){
+                        itemArr.push(page[closure.props.headers[i]]);
+                    }
+                    return itemArr;
                 });
                 //implement immutable
 
@@ -44,12 +41,28 @@ export default class TableListingContainer extends React.Component{
             });
             //fetch table headers bas
     }
-    onFilterChange(event){
-        this.setState({query : event.target.value});
+    componentDidMount(){
+        this.makeGrid.setAttribute("uk-grid", "");
+        this.fetchData(this.props.api);
     }
+    componentWillReceiveProps(nextProps){
+        if(nextProps.api !== this.props.api || nextProps.url !== this.props.url){
+            this.fetchData(nextProps.api);
+        }
+    }
+    componetShouldUpdate(newprops, newstate){
+        return newstate !== this.state || newprops.url !== this.props.url;
+    }
+    onFilterChange(event){
+        const oldstate = this.state;
+        const newState = update(oldstate,{$merge : {query: event.target.value}});
+        this.setState(newState);
+    }
+
+
     render(){
         return(
-        <div>
+            <div>
             <div className="uk-padding uk-padding-remove-horizontal">
                 <h2 className="uk-heading-divider">{this.props.title}</h2>
                 <div className="uk-section uk-section-muted uk-padding">
@@ -60,20 +73,21 @@ export default class TableListingContainer extends React.Component{
                                 </div>
                             </div>
                             <div className="uk-form-controls uk-width-1-4">
-                                <button className="uk-button uk-button-primary" onClick={this.handleNewPageClick}>New Item</button>
+                                <button className="uk-button uk-button-primary" onClick={this.handleNewClick}>New Item</button>
                             </div>
                         </div>
                 </div>
                 <div className="uk-section uk-section-default uk-padding-remove-top">
-                    <TableListing  router={this.props.router} headers={this.state.headers} data={this.state.data}  filter={this.state.query}/>
+                    <TableListing  url={this.props.url} router={this.props.router} headers={this.props.headers} data={this.state.data}  filter={this.state.query}/>
                 </div>
             
             </div>
         </div>
+
+
         );
 
 
     }
-
 
 }
