@@ -36336,7 +36336,7 @@ var NewPageForm = function (_React$Component) {
                 SLUG: "",
                 CREATEDBY: "",
                 MODIFIEDBY: "",
-                CATID: "",
+                CATID: -1,
                 ACTIVE: false
             },
             validData: {},
@@ -36522,7 +36522,7 @@ var NewPageForm = function (_React$Component) {
             var Options = this.state.options.map(function (option) {
                 return _react2.default.createElement(
                     'option',
-                    { value: option.ID, selected: closure.state.editData.CATID === option.ID, __self: this,
+                    { selected: closure.state.editData.CATID === option.ID ? true : false, value: option.ID, __self: this,
                         __source: {
                             fileName: _jsxFileName,
                             lineNumber: 187

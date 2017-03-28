@@ -16,7 +16,7 @@ export default class NewPageForm extends React.Component {
                 SLUG: "",
                 CREATEDBY: "",
                 MODIFIEDBY: "",
-                CATID : "",
+                CATID : -1,
                 ACTIVE : false
             },
             validData :{
@@ -184,7 +184,7 @@ export default class NewPageForm extends React.Component {
     render() {
         var closure = this;
         const Options = this.state.options.map(function(option){
-            return(<option value={option.ID} selected={closure.state.editData.CATID === option.ID}>{option.HEADING}</option>)
+            return(<option selected={closure.state.editData.CATID === option.ID ? true: false} value={option.ID}>{option.HEADING}</option>)
         });
         return (
             <div className="uk-padding uk-padding-remove-horizontal">

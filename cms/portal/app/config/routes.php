@@ -42,9 +42,14 @@ $f3->route("GET /login", function($f3){
 $f3->route("POST /login", "usersController->login");
 $f3->route("GET /destroy", "usersController->destroy");
 //pages
+
+
+$f3->route("GET /api/pages/fetch/@id [ajax]", "pagesController->fetch");
+$f3->route("GET /api/pages/queryactive [ajax]", "pagesController->queryActive");
 $f3->route("GET /api/pages/@id [ajax]", "pagesController->get");
 $f3->route("POST /api/pages/@id [ajax]", "pagesController->update");
 $f3->route("GET /api/pages/query [ajax]", "pagesController->query");
+$f3->route("GET /api/pages/@cat/@slug [ajax]", "pagesController->getBySlug");
 //cats
 $f3->route("GET /api/cats/@id [ajax]", "catController->get");
 $f3->route("GET /api/cats/query [ajax]", "catController->query");

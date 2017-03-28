@@ -9,8 +9,30 @@ class pagesController extends baseController{
         $pages->load(array("ID = ?", $params["id"]));
         echo json_encode($pages->cast());
     }
-
-
+     public function fetch($f3,  $params){
+        $pages = new DB\SQL\Mapper($f3->get("DB"), "site_pages_with_category_heading");
+        $pages->load(array("ID = ? and ACTIVE = 1", $params["id"]));
+        echo json_encode($pages->cast());
+    }
+    public function getBySlug($f3, $params){
+        $pages = new DB\SQL\Mapper($f3->get("DB"), "site_pages_with_category_heading");
+        $pages->load(array("SLUG=? and HEADING=? and ACTIVE=1", $params['slug'], $params['cat']));
+        $pageToSend = $pages->cast();
+        if(!empty($pageToSend['BODY']) ){
+            echo json_encode($pages->cast());
+        }else{  
+             http_response_code(400);
+        }
+    }
+    public function queryActive($f3, $params){
+        $pages = new DB\SQL\Mapper($f3->get("DB"), "site_pages_with_category_heading");
+        $allpages = $pages->find(array("ACTIVE=1"));
+        $results = array();
+        foreach($allpages as $item){
+            array_push($results, $item->cast());
+        }
+        echo json_encode($results);
+    }
 
     //GET ALL DONT TOUCH
     public function query($f3, $params){
