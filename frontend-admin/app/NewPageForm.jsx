@@ -140,12 +140,20 @@ export default class NewPageForm extends React.Component {
             <div className="uk-padding uk-padding-remove-horizontal">
                 <h2 className="uk-heading-divider">Page Editor</h2>
                 <div className='uk-section uk-section-muted uk-padding'>
-                    <p className="uk-text-lead">Use the section below to modify the contents of the web page</p>
-                    <input className="uk-input" placeholder="title" value={this.state.editData.TITLE} onChange={this.handleTitleChange}></input>
-                    <input className="uk-input" placeholder="slug" value={this.state.editData.SLUG} onChange={this.handleSlugChange}></input>
-                    <select className="uk-select">
-                        {Options}
-                    </select>
+                    <div className='uk-margin'>
+                        <p className="uk-text-lead">Use the section below to modify the contents of the web page</p>
+                    </div>
+                    <div className='uk-margin'>
+                        <input className="uk-input" placeholder="title" value={this.state.editData.TITLE} onChange={this.handleTitleChange}></input>
+                    </div>
+                    <div className='uk-margin'>
+                        <input className="uk-input" placeholder="slug" value={this.state.editData.SLUG} onChange={this.handleSlugChange}></input>
+                    </div>
+                    <div className='uk-margin'>
+                        <select className="uk-select">
+                            {Options}
+                        </select>
+                    </div>
                     <Editor value={this.state.editData.BODY} onEditorChange={this.handleEditorChange} />
                 </div>
                 <div className="uk-margin">

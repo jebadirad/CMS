@@ -33,7 +33,7 @@ export default class Login extends React.Component{
         return(<div>
             <Container>
                 <form className="uk-form-stacked" method="POST" action={Urls.base  + "login"}>
-                    <fieldset className="uk-fieldset">
+                    <fieldset className="uk-fieldset uk-margin-large-top">
                         <legend className="uk-legend">
                             Login
                         </legend>

@@ -3,6 +3,7 @@ export const Urls = {
     pagesController : siteName + "api/pages/",
     pagesQuery : siteName + "api/pages/query",
     usersController : siteName + "api/users/",
+    usersQuery : siteName + "api/users/query",
     catController : siteName + "api/cats/",
     
     base : siteName
@@ -13,7 +14,8 @@ export const NavUrls ={
     home : base ,
     webpages : base + "/webpages",
     editor : base + "/webpages/edit",
-    users : base + "/users",
+    users : base + "/user",
     categories : base + "/cat",
     catEditor : base + "/cat/edit",
+    logout : siteName + "destroy"
 }

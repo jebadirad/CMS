@@ -58,7 +58,6 @@ export default class NewCatForm extends React.Component{
             });
 
         promise.fail(function(data){
-            debugger;
             closure.props.notify({message : "Failed", status : "danger"});
     });
     }
@@ -77,11 +76,15 @@ export default class NewCatForm extends React.Component{
             <div className="uk-padding uk-padding-remove-horizontal">
                 <h2 className="uk-heading-divider">Heading Editor</h2>
                 <div className="uk-section uk-section-muted uk-padding">
-                    <p className="uk-text-lead">Headings are used to group pages together in a navigation menu</p>
-                    <input 
-                        placeholder="Heading" 
-                        value={this.state.editData.HEADING} 
-                        onChange={this.handleChange}/>
+                    <div className="uk-margin">
+                        <p className="uk-text-lead">Headings are used to group pages together in a navigation menu</p>
+                    </div>
+                    <div className="uk-margin">
+                        <input className='uk-input'
+                            placeholder="Heading" 
+                            value={this.state.editData.HEADING} 
+                            onChange={this.handleChange}/>
+                    </div>
                 </div>
                 <div className="uk-margin">
                     <div className="uk-flex uk-flex-between">

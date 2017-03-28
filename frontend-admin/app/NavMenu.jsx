@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import CustomNavLink from './CustomNavLink.jsx';
-import {NavUrls} from './Constants.jsx';
+import {Urls, NavUrls} from './Constants.jsx';
 import $ from 'jquery';
 export default class NavMenu extends React.Component{
 
@@ -9,7 +9,7 @@ export default class NavMenu extends React.Component{
             super(props);
             this.state = {
                 username : ""
-            };
+            }
             this.changeMenu = this.changeMenu.bind(this);
     }
 
@@ -17,18 +17,18 @@ export default class NavMenu extends React.Component{
             this.props.onViewChange(item);
         }
         componentDidMount(){
-           /* var promise = $.ajax({
-                url: "fdsafdsa",
+           var promise = $.ajax({
+                url: Urls.usersController + "get/current",
                 method :"GET"
             });
             var closure = this;
             promise.done(function(data){
-                closure.setState({username : data});
+                closure.setState({username : data.username});
             });
             promise.fail(function(data){
 
             });
-            */
+            
             this.menuContainer.setAttribute("uk-navbar" , "");
             this.toggleIcon.setAttribute("uk-navbar-toggle-icon", '');
             this.toggleMenu.setAttribute("uk-toggle", "target: #offNavMenu");
@@ -55,7 +55,14 @@ export default class NavMenu extends React.Component{
                            </a>
                         </div>
                         <div className="uk-navbar-right">
-                            <span>{this.state.username}</span>
+                            <ul className="uk-navbar-nav">
+                                <li className='uk-navbar-item'>
+                                    <span>Hello, {this.state.username}</span>
+                                </li>
+                                <li className='uk-navbar-item'>
+                                    <a href={NavUrls.logout}>Logout</a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                     <div id={navId} ref={(div) => {this.offCanvas = div;}}>
@@ -64,7 +71,7 @@ export default class NavMenu extends React.Component{
                                 <ul className='uk-nav uk-nav-default'>
                                         <CustomNavLink menuToClose={navId} activeClassName="uk-active" to={NavUrls.home} exact={true} >Home</CustomNavLink>
                                         <CustomNavLink menuToClose={navId} activeClassName="uk-active" to={NavUrls.webpages} exact={true}>Web Pages</CustomNavLink>
-                                        <CustomNavLink menuToClose={navId} activeClassName="uk-active" to={NavUrls.webpages} exact={true}>User Management</CustomNavLink>
+                                        <CustomNavLink menuToClose={navId} activeClassName="uk-active" to={NavUrls.users} exact={true}>User Management</CustomNavLink>
                                         <CustomNavLink menuToClose={navId} activeClassName="uk-active" to={NavUrls.categories} exact={true}>Categories</CustomNavLink>
                                 </ul>
                             </div>

@@ -15,4 +15,10 @@ class AuthController{
     public function hasher($password){
         return password_hash($password, PASSWORD_BCRYPT);
     }
+    public function destroy(){
+        session_start();
+        unset($_SESSION['user']);
+        session_destroy();
+
+    }
 }

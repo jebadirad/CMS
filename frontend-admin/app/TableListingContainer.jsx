@@ -34,8 +34,9 @@ export default class TableListingContainer extends React.Component{
                     return itemArr;
                 });
                 //implement immutable
-
-                closure.setState({data : mappedData});
+                const oldData = closure.state;
+                const newData = update(oldData, {$set : {data : mappedData, query : ""}});
+                closure.setState(newData);
             });
             promise.fail(function(){
             });
@@ -48,7 +49,9 @@ export default class TableListingContainer extends React.Component{
     componentWillReceiveProps(nextProps){
         if(nextProps.api !== this.props.api || nextProps.url !== this.props.url){
             this.fetchData(nextProps.api);
+
         }
+        
     }
     componetShouldUpdate(newprops, newstate){
         return newstate !== this.state || newprops.url !== this.props.url;
@@ -69,7 +72,7 @@ export default class TableListingContainer extends React.Component{
                         <div className="uk-margin uk-grid-small"  ref={(div) => {this.makeGrid = div;}}>
                             <div className="uk-width-3-4">
                                 <div className="uk-form-controls">
-                                    <input className="uk-input uk-form-width-large" type="text" placeholder="Filter" onChange={this.onFilterChange}/>
+                                    <input value={this.state.query} className="uk-input uk-form-width-large" type="text" placeholder="Filter" onChange={this.onFilterChange}/>
                                 </div>
                             </div>
                             <div className="uk-form-controls uk-width-1-4">

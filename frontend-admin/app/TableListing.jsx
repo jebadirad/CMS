@@ -24,8 +24,11 @@ export default class TableListing extends React.Component{
                 var include = false;
                 if(closure.props.filter){
                     //check title and check slug. should make this an obj later.
-                    if(row[1].indexOf(closure.props.filter) > -1 || row[2].indexOf(closure.props.filter) > -1){
-                        include = true;
+                    for(var prop in row){
+                        if(row.hasOwnProperty(prop) && row[prop].indexOf && row[prop].toLowerCase().indexOf(closure.props.filter.toLowerCase()) > -1){
+                                include = true;
+                                break;
+                            }
                     }
                 }else{
                    include = true; 

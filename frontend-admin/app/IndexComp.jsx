@@ -6,13 +6,16 @@ import ToastWrapper from './ToastWrapper.jsx';
 import TableListingItemContainer from './TableListingItemContainer.jsx';
 import NewPageForm from './NewPageForm.jsx';
 import NewCatForm from './NewCatForm.jsx';
+import NewUserForm from './NewUserForm.jsx';
 import {Router, Route, browserHistory, IndexRoute} from 'react-router';
+
 import AdminPanel from './app.jsx';
 export default class IndexComp extends React.Component{
     constructor(props){
         super(props);
         this.webPageTableheaders = ["ID", "TITLE", "SLUG", "CREATEDBY", "MODIFIEDBY"];
         this.CatTableHeaders = ["ID", "HEADING"];
+        this.UserTableHeaders = ["ID", "USERNAME", "FIRST", "LAST", "EMAIL"];
     }
     render(){
     return(
@@ -24,13 +27,17 @@ export default class IndexComp extends React.Component{
                 <Route exact={false} strict={false} path={NavUrls.webpages + "/new"} component={NewPageForm} />
                 <Route exact={false} strict={false} path={NavUrls.webpages + "/edit/:id"} component={NewPageForm} />
             </Route>
+            <Route exact={false} strict={false} path={NavUrls.users} component={ToastWrapper}>
+                <IndexRoute url={NavUrls.users} api={Urls.usersController} title="Users" headers={this.UserTableHeaders} component={TableListingItemContainer} />
+                <Route exact={false} strict={false} path={NavUrls.users + "/new"} component={NewUserForm} />
+                <Route exact={false} strict={false} path={NavUrls.users + "/edit/:id"} component={NewUserForm} />
+            </Route>
             <Route exact={false} strict={false} path={NavUrls.categories} component={ToastWrapper}>
                 <IndexRoute url={NavUrls.categories} api={Urls.catController} title="My Headings" headers={this.CatTableHeaders} component={TableListingItemContainer} />
                 <Route exact={false} strict={false} path={NavUrls.categories + "/new"} component={NewCatForm} />
                 <Route exact={false} strict={false} path={NavUrls.categories + "/edit/:id"} component={NewCatForm} />
             </Route>
-            <Route exact={false} strict={false} path={NavUrls.users} component={ToastWrapper}>
-            </Route>
+            
 
         </Route>
     </Router>
