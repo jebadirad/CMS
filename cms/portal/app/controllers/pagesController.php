@@ -14,7 +14,7 @@ class pagesController extends baseController{
 
     //GET ALL DONT TOUCH
     public function query($f3, $params){
-        $pages = new DB\SQL\Mapper($f3->get("DB"), "sitepages");
+        $pages = new DB\SQL\Mapper($f3->get("DB"), "site_pages_with_category_heading");
         $allpages = $pages->find('',array('order' => 'ID'));
         $results = array();
         foreach($allpages as $item){
@@ -59,20 +59,33 @@ class pagesController extends baseController{
                     $title = $_POST['TITLE'];
                     $body = $_POST['BODY'];
                     $slug =  $_POST['SLUG'];
-                if($this->validatePage($title, $body, $slug, 0)){
-                        $pages = new DB\SQL\Mapper($f3->get("DB"),"sitepages");
-
-                        $pages->load(array("ID=?", $params['id']));
-                        $pages->TITLE= $_POST['TITLE'];
-                        $pages->BODY = $_POST['BODY'];
-                        $pages->SLUG= $_POST['SLUG'];
-                        //do this later
-                        $pages->CREATEDBY = 0;
-                        $pages->MODIFIEDBY = 0;
-                        $pages->save();
-                        $pages->reset();
-                        $response["status"] = "ok";
-                        echo json_encode($response);
+                    $cat = $_POST["CATID"];
+                    $active = $_POST['ACTIVE'];
+                if($this->validatePage($title, $body, $slug, 0, $cat, $active)){
+                        
+                        $cats = new DB\SQL\Mapper($f3->get("DB"),"categories"); 
+                        $catval = intval($cat);
+                        $activeVal = intval($active);
+                        $catCount = $cats->count(array("ID=?", $catval));
+                        if($catCount ==1){
+                            $pages = new DB\SQL\Mapper($f3->get("DB"),"sitepages");
+                            $pages->load(array("ID=?", $params['id']));
+                            $pages->TITLE= $_POST['TITLE'];
+                            $pages->BODY = $_POST['BODY'];
+                            $pages->SLUG= $_POST['SLUG'];
+                            $pages->CATID = $catval;
+                            $pages->ACTIVE = $activeVal;
+                            //do this later
+                            $pages->CREATEDBY = 0;
+                            $pages->MODIFIEDBY = 0;
+                            $pages->save();
+                            $pages->reset();
+                            $response["status"] = "ok";
+                            echo json_encode($response);
+                        }else{
+                            http_response_code(400);
+                        }
+                        
                 }
                     
                     else{
@@ -82,12 +95,11 @@ class pagesController extends baseController{
         
         }
     }
-    function validatePage($title, $body,$slug, $modifiedby){
+    function validatePage($title, $body,$slug, $modifiedby, $cat, $active){
         $success = false;
-        if(!empty($title) && !empty($body) && !empty($slug)){
-            $success = true;
-        }
-
+            if(!empty($title) && !empty($body) && !empty($slug) && !empty($cat) && (!empty($active) || $active == 0)){
+                $success = true;
+            }
         return $success;
     }
 

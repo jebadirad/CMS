@@ -26,10 +26,12 @@ class catController extends baseController{
        else{
            if($this->stillLoggedIn()){
                $heading = $_POST['HEADING'];
-               if(!empty($heading)){
+               $active = $_POST['ACTIVE'];
+               if(!empty($heading) && (!empty($active) || $active == 0)){
                    $cats = new DB\SQL\Mapper($f3->get("DB"), "categories");
                    $cats->load(array("ID=?", $params['id']));
                    $cats->HEADING = $heading;
+                   $cats->ACTIVE = intval($active);
                    $cats->save();
                    $cats->reset();
                    $response['status'] = "ok";

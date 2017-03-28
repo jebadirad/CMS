@@ -9,12 +9,15 @@ export default class NewCatForm extends React.Component{
         this.state = {
             editData : {
                 ID: "",
-                HEADING : ''
+                HEADING : '',
+                ACTIVE : false
             }
         }
         this.submitHandler = this.submitHandler.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.returnToTable = this.returnToTable.bind(this);
+        this.handleActiveChange = this.handleActiveChange.bind(this);
+
     }
     componentDidMount(){
         if(this.props.params.id){
@@ -24,6 +27,12 @@ export default class NewCatForm extends React.Component{
                 method : "GET"
             });
             promise.done(function(data){
+                if(data.ACTIVE == 1){
+                        closure.refs.active.checked = true;
+                }
+                else{
+                    closure.refs.active.checked = false;
+                }
                 closure.setState({editData : data});
             });
             promise.fail(function(){
@@ -31,9 +40,22 @@ export default class NewCatForm extends React.Component{
             });
         }
     }
+     handleActiveChange(e){
+        const active = this.refs.active.checked;
+        var activeInt;
+        if(active){
+            activeInt = 1;
+        }else{
+            activeInt = 0;
+        }
+        const originalData = this.state;
+        const newData = update(originalData , {editData : {$merge : {ACTIVE : activeInt}}});
+        this.setState(newData);
+    }
     submitHandler(){
         var payload = {
-            HEADING : this.state.editData.HEADING
+            HEADING : this.state.editData.HEADING,
+            ACTIVE : this.state.editData.ACTIVE
         };
         var sendingId = '';
 
@@ -84,6 +106,9 @@ export default class NewCatForm extends React.Component{
                             placeholder="Heading" 
                             value={this.state.editData.HEADING} 
                             onChange={this.handleChange}/>
+                    </div>
+                    <div className="uk-margin">
+                        <label><input ref="active" onChange={this.handleActiveChange} className='uk-checkbox' type='checkbox' />{" Active"}</label>
                     </div>
                 </div>
                 <div className="uk-margin">

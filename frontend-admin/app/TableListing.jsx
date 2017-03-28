@@ -23,9 +23,13 @@ export default class TableListing extends React.Component{
             const tableData = this.props.data.map(function(row){
                 var include = false;
                 if(closure.props.filter){
+                    
                     //check title and check slug. should make this an obj later.
                     for(var prop in row){
-                        if(row.hasOwnProperty(prop) && row[prop].indexOf && row[prop].toLowerCase().indexOf(closure.props.filter.toLowerCase()) > -1){
+                        if(row.hasOwnProperty(prop) && row[prop] != null  && row[prop].indexOf && row[prop].toLowerCase().indexOf(closure.props.filter.toLowerCase()) > -1){
+                                include = true;
+                                break;
+                            }else if((prop == row.length -1 && closure.props.filter.toLowerCase() == "active" && row[prop] == 1) || (prop == row.length -1 && closure.props.filter.toLowerCase() == "inactive" && row[prop] == 0)){
                                 include = true;
                                 break;
                             }
@@ -34,7 +38,17 @@ export default class TableListing extends React.Component{
                    include = true; 
                 }
                 if(include){
-                    const cells = row.map(function(dataCell, index){return(<td key={index}>{dataCell}</td>);});
+                    const cells = row.map(function(dataCell, index){
+                    if(index == row.length -1){
+                        if(dataCell == 0){
+                            return (<td key={index}>Inactive</td>);
+                        }else{
+                            return (<td key={index}>Active</td>);
+                        }
+                    }
+                    return(<td key={index}>{dataCell}</td>);
+                
+                });
                     var data = (<tr  onClick={() => closure.onClickItem(row[0])} key={row[0]}>{cells}</tr>);
                 }else{
                     const data = null;

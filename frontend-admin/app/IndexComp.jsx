@@ -13,9 +13,9 @@ import AdminPanel from './app.jsx';
 export default class IndexComp extends React.Component{
     constructor(props){
         super(props);
-        this.webPageTableheaders = ["ID", "TITLE", "SLUG", "CREATEDBY", "MODIFIEDBY"];
-        this.CatTableHeaders = ["ID", "HEADING"];
-        this.UserTableHeaders = ["ID", "USERNAME", "FIRST", "LAST", "EMAIL"];
+        this.webPageTableheaders = ["ID", "TITLE", "SLUG", "CREATEDBY", "HEADING", "MODIFIEDBY", "ACTIVE"];
+        this.CatTableHeaders = ["ID", "HEADING", "ACTIVE"];
+        this.UserTableHeaders = ["ID", "USERNAME", "FIRST", "LAST", "EMAIL", "ACTIVE"];
     }
     render(){
     return(
