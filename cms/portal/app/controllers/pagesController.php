@@ -3,7 +3,7 @@
 class pagesController extends baseController{
 
    
- 
+    
     public function get($f3,  $params){
         $pages = new DB\SQL\Mapper($f3->get("DB"), "sitepages");
         $pages->load(array("ID = ?", $params["id"]));
@@ -11,14 +11,14 @@ class pagesController extends baseController{
     }
      public function fetch($f3,  $params){
         $pages = new DB\SQL\Mapper($f3->get("DB"), "site_pages_with_category_heading");
-        $pages->load(array("ID = ? and ACTIVE = 1", $params["id"]));
+        $pages->load(array("ID = ? and ACTIVE = 1 and CATACTIVE=1", $params["id"]));
         echo json_encode($pages->cast());
     }
     public function getBySlug($f3, $params){
         $pages = new DB\SQL\Mapper($f3->get("DB"), "site_pages_with_category_heading");
-        $pages->load(array("SLUG=? and HEADING=? and ACTIVE=1", $params['slug'], $params['cat']));
+        $pages->load(array("SLUG=? and HEADING=? and ACTIVE=1 and CATACTIVE=1", $params['slug'], $params['cat']));
         $pageToSend = $pages->cast();
-        if(!empty($pageToSend['BODY']) ){
+        if(!empty($pageToSend['ID']) ){
             echo json_encode($pages->cast());
         }else{  
              http_response_code(400);

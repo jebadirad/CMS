@@ -3653,7 +3653,8 @@ var NavUrls = exports.NavUrls = {
     users: base + "/user",
     categories: base + "/cat",
     catEditor: base + "/cat/edit",
-    logout: siteName + "destroy"
+    logout: siteName + "destroy",
+    preview: siteName + "preview"
 };
 
 /***/ }),
@@ -36466,7 +36467,40 @@ var NewPageForm = function (_React$Component) {
     }, {
         key: 'previewHandler',
         value: function previewHandler() {
+            var form = document.createElement("form");
+            form.setAttribute("method", "POST");
+            form.setAttribute("action", _Constants.NavUrls.preview);
+            form.setAttribute("target", "_blank");
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", "preview");
+            hiddenField.setAttribute("value", this.state.editData.BODY);
+            form.appendChild(hiddenField);
+            document.body.appendChild(form);
+            form.submit();
+            document.body.removeChild(form);
+            /*var closure = this;
+            var promise = $.ajax({
+                  url : NavUrls.preview,
+                method : "POST",
+                data : "",
+                dataType: "html"
+            });
+            promise.done(function(data){
+                closure.showPreview(data);
+                //var win = window.open();
+                //win.document.write(data);
+            });
+            promise.fail(function(data){
+                debugger;
+            });*/
             //later
+        }
+    }, {
+        key: 'showPreview',
+        value: function showPreview(data) {
+            var w = window.open();
+            w.document.write(data);
         }
     }, {
         key: 'componentDidMount',
@@ -36525,7 +36559,7 @@ var NewPageForm = function (_React$Component) {
                     { selected: closure.state.editData.CATID === option.ID ? true : false, value: option.ID, __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 187
+                            lineNumber: 219
                         }
                     },
                     option.HEADING
@@ -36536,7 +36570,7 @@ var NewPageForm = function (_React$Component) {
                 { className: 'uk-padding uk-padding-remove-horizontal', __self: this,
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 190
+                        lineNumber: 222
                     }
                 },
                 _react2.default.createElement(
@@ -36544,7 +36578,7 @@ var NewPageForm = function (_React$Component) {
                     { className: 'uk-heading-divider', __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 191
+                            lineNumber: 223
                         }
                     },
                     'Page Editor'
@@ -36554,7 +36588,7 @@ var NewPageForm = function (_React$Component) {
                     { className: 'uk-section uk-section-muted uk-padding', __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 192
+                            lineNumber: 224
                         }
                     },
                     _react2.default.createElement(
@@ -36562,7 +36596,7 @@ var NewPageForm = function (_React$Component) {
                         { className: 'uk-margin', __self: this,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 193
+                                lineNumber: 225
                             }
                         },
                         _react2.default.createElement(
@@ -36570,7 +36604,7 @@ var NewPageForm = function (_React$Component) {
                             { className: 'uk-text-lead', __self: this,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 194
+                                    lineNumber: 226
                                 }
                             },
                             'Use the section below to modify the contents of the web page'
@@ -36581,13 +36615,13 @@ var NewPageForm = function (_React$Component) {
                         { className: 'uk-margin', __self: this,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 196
+                                lineNumber: 228
                             }
                         },
                         _react2.default.createElement('input', { className: typeof this.state.validData.title == "undefined" ? "uk-input" : this.state.validData.title ? "uk-input uk-form-success" : "uk-input uk-form-danger", placeholder: 'title', value: this.state.editData.TITLE, onChange: this.handleTitleChange, __self: this,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 197
+                                lineNumber: 229
                             }
                         })
                     ),
@@ -36596,13 +36630,13 @@ var NewPageForm = function (_React$Component) {
                         { className: 'uk-margin', __self: this,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 199
+                                lineNumber: 231
                             }
                         },
                         _react2.default.createElement('input', { className: typeof this.state.validData.slug == "undefined" ? "uk-input" : this.state.validData.slug ? "uk-input uk-form-success" : "uk-input uk-form-danger", placeholder: 'slug', value: this.state.editData.SLUG, onChange: this.handleSlugChange, __self: this,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 200
+                                lineNumber: 232
                             }
                         })
                     ),
@@ -36611,7 +36645,7 @@ var NewPageForm = function (_React$Component) {
                         { className: 'uk-margin', __self: this,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 202
+                                lineNumber: 234
                             }
                         },
                         _react2.default.createElement(
@@ -36619,7 +36653,7 @@ var NewPageForm = function (_React$Component) {
                             { className: typeof this.state.validData.cat == "undefined" ? "uk-select" : this.state.validData.cat ? "uk-select uk-form-success" : "uk-select uk-form-danger", onChange: this.handleCatChange, __self: this,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 203
+                                    lineNumber: 235
                                 }
                             },
                             Options
@@ -36630,7 +36664,7 @@ var NewPageForm = function (_React$Component) {
                         { className: 'uk-margin', __self: this,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 207
+                                lineNumber: 239
                             }
                         },
                         _react2.default.createElement(
@@ -36639,13 +36673,13 @@ var NewPageForm = function (_React$Component) {
                                 __self: this,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 208
+                                    lineNumber: 240
                                 }
                             },
                             _react2.default.createElement('input', { ref: 'active', onChange: this.handleActiveChange, className: 'uk-checkbox', type: 'checkbox', __self: this,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 208
+                                    lineNumber: 240
                                 }
                             }),
                             " Active"
@@ -36654,7 +36688,7 @@ var NewPageForm = function (_React$Component) {
                     _react2.default.createElement(_Editor2.default, { value: this.state.editData.BODY, onEditorChange: this.handleEditorChange, __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 210
+                            lineNumber: 242
                         }
                     })
                 ),
@@ -36663,7 +36697,7 @@ var NewPageForm = function (_React$Component) {
                     { className: 'uk-margin', __self: this,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 212
+                            lineNumber: 244
                         }
                     },
                     _react2.default.createElement(
@@ -36671,7 +36705,7 @@ var NewPageForm = function (_React$Component) {
                         { className: 'uk-flex uk-flex-between', __self: this,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 213
+                                lineNumber: 245
                             }
                         },
                         _react2.default.createElement(
@@ -36680,7 +36714,7 @@ var NewPageForm = function (_React$Component) {
                                 __self: this,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 214
+                                    lineNumber: 246
                                 }
                             },
                             _react2.default.createElement(
@@ -36688,7 +36722,7 @@ var NewPageForm = function (_React$Component) {
                                 { onClick: this.returnToTable, className: 'uk-button uk-button-danger', __self: this,
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 215
+                                        lineNumber: 247
                                     }
                                 },
                                 'Cancel'
@@ -36700,7 +36734,7 @@ var NewPageForm = function (_React$Component) {
                                 __self: this,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 217
+                                    lineNumber: 249
                                 }
                             },
                             _react2.default.createElement(
@@ -36708,7 +36742,7 @@ var NewPageForm = function (_React$Component) {
                                 { onClick: this.previewHandler, className: 'uk-button uk-button-secondary', __self: this,
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 218
+                                        lineNumber: 250
                                     }
                                 },
                                 'Preview'
@@ -36718,7 +36752,7 @@ var NewPageForm = function (_React$Component) {
                                 { onClick: this.submitHandler, className: 'uk-button uk-button-primary', __self: this,
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 219
+                                        lineNumber: 251
                                     }
                                 },
                                 'Submit'

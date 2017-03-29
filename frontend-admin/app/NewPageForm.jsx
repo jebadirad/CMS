@@ -133,7 +133,39 @@ export default class NewPageForm extends React.Component {
         this.setState(newData);
     }
     previewHandler() {
+        var form = document.createElement("form");
+        form.setAttribute("method", "POST");
+        form.setAttribute("action", NavUrls.preview);
+        form.setAttribute("target", "_blank");
+        var hiddenField = document.createElement("input");
+        hiddenField.setAttribute("type", "hidden");
+        hiddenField.setAttribute("name", "preview");
+        hiddenField.setAttribute("value", this.state.editData.BODY);
+        form.appendChild(hiddenField);
+        document.body.appendChild(form);
+        form.submit();
+        document.body.removeChild(form);
+        /*var closure = this;
+        var promise = $.ajax({
+
+            url : NavUrls.preview,
+            method : "POST",
+            data : "",
+            dataType: "html"
+        });
+        promise.done(function(data){
+            closure.showPreview(data);
+            //var win = window.open();
+            //win.document.write(data);
+        });
+        promise.fail(function(data){
+            debugger;
+        });*/
         //later
+    }
+    showPreview(data){
+        var w = window.open();
+        w.document.write(data);
     }
     componentDidMount() {
         if (this.props.params.id) {

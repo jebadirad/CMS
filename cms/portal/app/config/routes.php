@@ -29,6 +29,8 @@ $f3->route('GET /',
         //else redirect to login page.
     }
 );*/
+//Preview
+$f3->route("POST /preview", "previewController->preview");
 //login
 $f3->route("GET /login", function($f3){
     $auther = new AuthController;
@@ -42,7 +44,6 @@ $f3->route("GET /login", function($f3){
 $f3->route("POST /login", "usersController->login");
 $f3->route("GET /destroy", "usersController->destroy");
 //pages
-
 
 $f3->route("GET /api/pages/fetch/@id [ajax]", "pagesController->fetch");
 $f3->route("GET /api/pages/queryactive [ajax]", "pagesController->queryActive");

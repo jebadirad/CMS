@@ -6,6 +6,7 @@ var PATHS ={
 module.exports = {
     entry: {
        app : "./app/Index.jsx",
+       preview: './app/Preview.jsx'
     },
      output: {
         path: __dirname + "/../cms/portal/scripts/",

@@ -42,12 +42,15 @@ export default class NavMenu extends React.Component{
 
     render(){
         var nav = [];
+        var closure = this;
         for(var id in this.state.pages){
             if(this.state.pages.hasOwnProperty(id)){
                 const navchildren = this.state.pages[id].map(function(child){
-                    return <NavLi key={child.ID} title={child.TITLE} />
+                    return (
+                    <NavLi router={closure.props.router} url={NavUrls.home + child.HEADING + "/" + child.SLUG} key={child.ID} title={child.TITLE} />
+                    );
                 });
-                nav.push(<NavLi key={id} title={id}>{navchildren}</NavLi>);
+                nav.push(<NavLi router={this.props.router} key={id} title={id}>{navchildren}</NavLi>);
             }
         }
         return(<div>

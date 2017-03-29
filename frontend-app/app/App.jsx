@@ -1,6 +1,7 @@
 import React from 'react';
 import Container from './Container.jsx';
-import NavMenu from './NavMenu.jsx';
+import Header from './Header.jsx';
+import Footer from './Footer.jsx';
 export default class App extends React.Component{
     constructor(props){
         super(props);
@@ -14,10 +15,11 @@ export default class App extends React.Component{
     render(){
 
         return(<div className='app-container'>
-            <NavMenu />
+            <Header router={this.props.router} />
             <Container>
                 {this.props.children}
             </Container>
+            <Footer />
         </div>);
     }
 

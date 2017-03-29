@@ -17,5 +17,6 @@ export const NavUrls ={
     users : base + "/user",
     categories : base + "/cat",
     catEditor : base + "/cat/edit",
-    logout : siteName + "destroy"
+    logout : siteName + "destroy",
+    preview: siteName + "preview",
 }

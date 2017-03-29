@@ -13,7 +13,7 @@ export default class Home extends React.Component{
     }
     componentDidMount(){
         var promise = $.ajax({
-            url : Urls.pagesController + "fetch/" + this.props.route.cat + "/" + this.props.route.slug,
+            url : Urls.pagesController  + this.props.route.cat + "/" + this.props.route.slug,
             method : "GET"
         });
         var closure = this;
