@@ -26,7 +26,7 @@ class pagesController extends baseController{
     }
     public function queryActive($f3, $params){
         $pages = new DB\SQL\Mapper($f3->get("DB"), "site_pages_with_category_heading");
-        $allpages = $pages->find(array("ACTIVE=1"));
+        $allpages = $pages->find(array("ACTIVE=1 and CATACTIVE=1"));
         $results = array();
         foreach($allpages as $item){
             array_push($results, $item->cast());

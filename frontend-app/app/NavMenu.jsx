@@ -2,6 +2,7 @@ import React from 'react';
 import $ from 'jquery';
 import {NavUrls, Urls} from "./Constants.jsx";
 import update from 'immutability-helper';
+import NavLi from './NavLi.jsx';
 export default class NavMenu extends React.Component{
     constructor(props){
         super(props);
@@ -23,7 +24,6 @@ export default class NavMenu extends React.Component{
             };
             
             for(var i = 0; i < data.length; i ++){
-                debugger;
                 if(mapped.pages[data[i].HEADING] && mapped.pages[data[i].HEADING]){
                     mapped.pages[data[i].HEADING].push(data[i]);
                 }else{
@@ -41,7 +41,18 @@ export default class NavMenu extends React.Component{
     }
 
     render(){
-        return(<div></div>);
+        var nav = [];
+        for(var id in this.state.pages){
+            if(this.state.pages.hasOwnProperty(id)){
+                const navchildren = this.state.pages[id].map(function(child){
+                    return <NavLi key={child.ID} title={child.TITLE} />
+                });
+                nav.push(<NavLi key={id} title={id}>{navchildren}</NavLi>);
+            }
+        }
+        return(<div>
+            <ul>{nav}</ul>
+        </div>);
     }
 
 }
