@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 29, 2017 at 01:14 AM
+-- Generation Time: Mar 30, 2017 at 12:11 AM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 7.0.13
 
@@ -39,7 +39,7 @@ CREATE TABLE `categories` (
 
 INSERT INTO `categories` (`ID`, `HEADING`, `ACTIVE`) VALUES
 (1, 'fddd1111', 1),
-(2, 'fdsa22', 1);
+(2, 'fdsa22', 0);
 
 -- --------------------------------------------------------
 
@@ -64,7 +64,7 @@ CREATE TABLE `sitepages` (
 --
 
 INSERT INTO `sitepages` (`ID`, `TITLE`, `BODY`, `SLUG`, `CREATEDBY`, `MODIFIEDBY`, `CATID`, `ACTIVE`) VALUES
-(1, 'fdsa', '<div><br></div><div><br></div><div>fffgfff</div>', 'fdsa', 0, 0, 1, 1),
+(1, 'fdsa', '<div><br></div><div><br></div><div>fffgfff</div><div><br></div><div><img src="http://cdn.embed.ly/providers/logos/imgur.png"></div>', 'fdsa', 0, 0, 1, 1),
 (2, 'fda', '<div><span style="font-family: monospace;">fdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsfdsaafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafd</span></div>', 'f', 0, 0, 1, 1),
 (3, 'give it a title f', '<div>so emptynot anymoref</div>', 'slug', 0, 0, 0, 0),
 (4, 'give it a title', '<div><br></div><div>&nbsp; &nbsp; }</div><div>&nbsp; &nbsp;&nbsp;</div><div><br></div><div><br></div><div>&nbsp; &nbsp; componentDidMount(){</div><div>&nbsp; &nbsp; this.makeGrid.setAttribute("uk-grid" , "");</div><div>&nbsp; &nbsp; var closure = this;</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; var promise = $.ajax({</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; url: this.props.url,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; method: "GET",</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; });</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; promise.done(function(data){</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; var mappedData = data.map(function(page){</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return [page.ID, page.TITLE, page.SLUG, page.CREATEDBY, page.MODIFIEDBY];</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; });</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //implement immutable</div><div><br></div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; closure.setState({data : mappedData});</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; });</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; promise.fail(function(){</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; });</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; //fetch table headers bas</div><div>&nbsp; &nbsp; }</div><div>&nbsp; &nbsp; onFilterChange(event){</div>', 'slug', 0, 0, 0, 0),
@@ -86,6 +86,7 @@ CREATE TABLE `site_pages_with_category_heading` (
 ,`MODIFIEDBY` int(11)
 ,`HEADING` varchar(255)
 ,`ACTIVE` int(11)
+,`CATACTIVE` int(11)
 );
 
 -- --------------------------------------------------------
@@ -95,7 +96,7 @@ CREATE TABLE `site_pages_with_category_heading` (
 --
 DROP TABLE IF EXISTS `site_pages_with_category_heading`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `site_pages_with_category_heading`  AS  select `sitepages`.`ID` AS `ID`,`sitepages`.`TITLE` AS `TITLE`,`sitepages`.`BODY` AS `BODY`,`sitepages`.`SLUG` AS `SLUG`,`sitepages`.`CREATEDBY` AS `CREATEDBY`,`sitepages`.`MODIFIEDBY` AS `MODIFIEDBY`,`categories`.`HEADING` AS `HEADING`,`sitepages`.`ACTIVE` AS `ACTIVE` from (`sitepages` left join `categories` on((`categories`.`ID` = `sitepages`.`CATID`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `site_pages_with_category_heading`  AS  select `sitepages`.`ID` AS `ID`,`sitepages`.`TITLE` AS `TITLE`,`sitepages`.`BODY` AS `BODY`,`sitepages`.`SLUG` AS `SLUG`,`sitepages`.`CREATEDBY` AS `CREATEDBY`,`sitepages`.`MODIFIEDBY` AS `MODIFIEDBY`,`categories`.`HEADING` AS `HEADING`,`sitepages`.`ACTIVE` AS `ACTIVE`,`categories`.`ACTIVE` AS `CATACTIVE` from (`sitepages` left join `categories` on((`categories`.`ID` = `sitepages`.`CATID`))) ;
 
 --
 -- Indexes for dumped tables
